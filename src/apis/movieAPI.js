@@ -21,6 +21,18 @@ const movieAPI = {
     });
   },
 
+  getCinema: () => {
+    return axiosClient.get('QuanLyRap/LayThongTinHeThongRap')  
+  },
+
+  showCinemasList: () => {
+    return axiosClient.get('QuanLyRap/LayThongTinLichChieuHeThongRap',{
+      params:{
+        maNhom:'GP01'
+      }
+    })
+    
+  },
   addMovie: (movie) => {
     // Đối với dữ liệu có định dạng đặc biệt như File,...
     // Ta cần phải tạo ra FormData để lưu trữ
@@ -33,6 +45,7 @@ const movieAPI = {
 
     return axiosClient.post("QuanLyPhim/ThemPhimUploadHinh", formData);
   },
+
 };
 
 export default movieAPI;

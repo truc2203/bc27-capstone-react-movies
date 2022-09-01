@@ -1,4 +1,32 @@
 .m-container{
-    max-width: 1280px;
+    max-width: 1000px;
     margin:  auto;
 }
+
+/* Banner */
+.banner-h{
+    height: 40vw;
+}
+
+.movieShow{
+    width: 12vw;
+    height: 240px;
+}
+
+.cinema-logo{
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+}
+
+.cinema-scale:hover{
+    transform: scale(1.2);
+    transition: all 0.5s;
+}
+
+.movie-title:hover{
+    color: #ff00ff;
+    transition: all 0.5s;
+}
+
+

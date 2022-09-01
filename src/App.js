@@ -2,6 +2,8 @@ import { lazy, Suspense } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
 import './overwrite.css'
 import './index.css'
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import MainLayout from "components/MainLayout";
 import AuthLayout from "components/AuthLayout";
 import CheckoutRoute from "routes/CheckoutRoute";

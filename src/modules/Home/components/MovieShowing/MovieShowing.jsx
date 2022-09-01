@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Carousel from "react-bootstrap/Carousel";
-
+import Slider from "react-slick";
 import useRequest from "hooks/useRequest";
 import movieAPI from "apis/movieAPI";
 
@@ -18,6 +17,15 @@ const MovieShowing = () => {
     navigate(`/movie/${movieId}`);
   };
 
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 4,
+  };
+
   return (
     // <ul>
     //   {movies?.map((movie) => {
@@ -29,27 +37,20 @@ const MovieShowing = () => {
     //     );
     //   })}
     // </ul>
-    <Carousel>
-      <div className="d-flex flex-wrap">
+    <div className="m-container py-5">
+        <Slider {...settings}>
         {movies?.map((movie) => {
-          return (
-            <div className="col-3 px-3" key={movie.maPhim}>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={movie.hinhAnh}
-                  alt=" "
-                />
-                <Carousel.Caption>
-                <button onClick={() => goToMovie(movie.maPhim)}>Chi tiết</button>
-                </Carousel.Caption>
-                <span>{movie.tenPhim}</span>
-              </Carousel.Item>
+        return (
+          <div key={movie.maPhim}>
+            <img className="rounded-2 movieShow " src={movie.hinhAnh} alt="" />
+            <div className="text-start">
+            <button className="btn btn-outline-info mt-3 w-50" onClick={() => goToMovie(movie.maPhim)}>Chi tiết</button>
             </div>
-          );
-        })}
+          </div>
+        );
+      })}
+        </Slider>
       </div>
-    </Carousel>
   );
 };
 

@@ -29,7 +29,6 @@ const Banner = () => {
     return { ...banner, trailer: TRAILERS[index] };
   });
 
-  console.log(bannersMapped);
 
   return (
     // <div style={{ display: "flex" }}>
@@ -50,7 +49,7 @@ const Banner = () => {
         return (
           <Carousel.Item key={banner.maPhim}>
             <img
-              className="d-block w-100"
+              className="d-block w-100 banner-h"
               src={banner.hinhAnh}
               alt='Banner Phim '
             />
