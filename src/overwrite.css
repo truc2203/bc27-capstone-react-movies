@@ -1,0 +1,26 @@
+.ant-layout-header{
+    background: #000000;
+}
+
+.collapse{
+    flex-direction: row-reverse;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.navbar-brand{
+    font-size: 30px;
+    font-weight: 400;
+    color: #ffffff;
+}
+.navbar-brand:hover{
+    color: #d7ee04;
+}
+.nav-link{
+    color: #ffffff;
+}
+
+.nav-link:hover{
+    color: #d7ee04;
+}
+
