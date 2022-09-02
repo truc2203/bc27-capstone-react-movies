@@ -6,7 +6,7 @@ import Header from "../Header";
 import Footer from "components/Footer";
 const MainLayout = () => {
   return (
-    <Layout style={{background:'#252424'}}>
+    <Layout>
       <Layout.Header>
         <Header />
       </Layout.Header>

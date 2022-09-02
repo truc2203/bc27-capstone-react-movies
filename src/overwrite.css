@@ -1,5 +1,5 @@
 .ant-layout-header{
-    background: #252424;
+    background: #fcfcfc;
 }
 .ant-layout-footer{
     background:#0b0b2b ;
@@ -13,16 +13,17 @@
 .navbar-brand{
     font-size: 30px;
     font-weight: 400;
-    color: #ffffff;
+    color: #000000;
 }
 .navbar-brand:hover{
     color: #d7ee04;
 }
 .nav-link{
-    color: #ffffff;
+    color: #000000;
 }
 
 .nav-link:hover{
     color: #d7ee04;
 }
+
 

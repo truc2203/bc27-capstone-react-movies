@@ -1,8 +1,9 @@
 import React from "react";
+import {FcPhotoReel} from 'react-icons/fc'
+import {FaUserCircle} from 'react-icons/fa'
 import { useNavigate } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate()
-  const path = ""
   const movePath = (path) => {
     navigate(`${path}`)
     console.log('login');
@@ -11,7 +12,7 @@ const Header = () => {
    <nav className="m-container navbar navbar-expand-lg h-100">
   <div className="container-fluid">
     <button className="navbar-brand" >
-      Cyber Movie
+      <FcPhotoReel/>
     </button>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span className="navbar-toggler-icon" />
@@ -19,22 +20,22 @@ const Header = () => {
     <div className="collapse navbar-collapse" id="navbarNav">
       <ul className="navbar-nav">
         <li className="nav-item px-3">
-          <button onClick={() => movePath('/')} className="nav-link" aria-current="page" >HOME</button>
+          <button onClick={() => movePath('/')} className="nav-link" aria-current="page" >Lịch Chiếu</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath('/')} className="nav-link" >MOVIE SHOWING</button>
+          <button onClick={() => movePath('/')} className="nav-link" >Cụm rạp</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath('/')} className="nav-link" >COMING MOVIE</button>
+          <button onClick={() => movePath('/')} className="nav-link" >Tin Tức</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath('login')}  className="nav-link" >SIGN IN</button>
+          <button onClick={() => movePath('/')}  className="nav-link" >Ứng Dụng</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath('register')}  className="nav-link " >SIGN UP</button>
+          <button onClick={() => movePath('register')}  className="nav-link " ><FaUserCircle/>Đăng Ký</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath('admin')} className="nav-link " >User</button>
+          <button onClick={() => movePath('login')} className="nav-link " ><FaUserCircle/>Đăng Nhập</button>
         </li>
       </ul>
     </div>

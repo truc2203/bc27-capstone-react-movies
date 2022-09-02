@@ -19,7 +19,7 @@ const CinemasList = () => {
       {cinemas?.map((cinema) => {
         if (cinema.maHeThongRap === movies?.maHeThongRap) {
           return (
-            <div className="text-light ps-4" key={cinema.maHeThongRap}>
+            <div className="ps-4" key={cinema.maHeThongRap}>
               {cinema.lstCumRap.map((cinemaName) => {
                 return (
                   <button
@@ -33,7 +33,7 @@ const CinemasList = () => {
                       src={cinemaName.hinhAnh}
                       alt=""
                     />
-                    <span>{cinemaName.tenCumRap}</span>
+                    <span className="fw-semibold">{cinemaName.tenCumRap}</span>
                   </button>
                 );
               })}

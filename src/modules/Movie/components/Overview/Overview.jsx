@@ -15,8 +15,15 @@ const Overview = ({ movieId }) => {
   }
 
   return (
-    <div>
-      <h1>{movie.tenPhim}</h1>
+    <div className="d-flex">
+      <div className="col-4 pe-5">
+      <img className="movieShowingPic" src={movie.hinhAnh} alt="" />
+      </div>
+      <div className="col-8">
+      <h3 className="text-start text-dark pt-3">{movie.tenPhim}</h3>
+      <p>Mô tả : {movie.moTa}</p>
+      <p>Đánh giá phim : {movie.danhGia}/10</p>
+      </div>
     </div>
   );
 };

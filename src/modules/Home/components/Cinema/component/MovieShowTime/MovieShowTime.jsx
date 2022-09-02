@@ -22,7 +22,7 @@ const MovieShowTime = () => {
       {moviesShow?.map((movie) => {
         if (movie.maHeThongRap === movies?.maHeThongRap) {
           return (
-            <div className="text-light ps-4" key={movie.maHeThongRap}>
+            <div className=" ps-4" key={movie.maHeThongRap}>
               {movie.lstCumRap.map((cinemaName) => {
                 if (cinemaName.tenCumRap === moviesList?.tenCumRap) {
                   return (
@@ -41,19 +41,19 @@ const MovieShowTime = () => {
                             >
                               <div>
                                 <img
-                                  className="cinema-logo rounded-3 me-3"
+                                  className="movie-logo rounded-3 me-3"
                                   src={movieList.hinhAnh}
                                   alt=""
                                 />
                               </div>
                               <div className="text-start">
-                                <p className="m-0">{movieList.tenPhim}</p>
-                                <p className="m-0">{cinemaName.diaChi}</p>
+                                <p  className=" fw-semibold m-0">{movieList.tenPhim}</p>
+                                <p className="fw-semibold m-0">{cinemaName.diaChi}</p>
                               </div>
                             </button>
                             {movieList.lstLichChieuTheoPhim.map((showTimes) => {
                               return (
-                                <p className="showtimes d-inline-block w-50 " key={showTimes.maLichChieu}>
+                                <p className="showtimes d-inline-block " key={showTimes.maLichChieu}>
                                   {showTimes.ngayChieuGioChieu}
                                 </p>
                               );

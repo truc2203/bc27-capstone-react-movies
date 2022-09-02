@@ -1,11 +1,9 @@
 import movieAPI from "apis/movieAPI";
 import useRequest from "hooks/useRequest";
-import { useNavigate } from "react-router-dom";
 import MovieShowTime from "./component/MovieShowTime";
 import CinemasList from "./component/CinemasList";
 import { useDispatch } from "react-redux";
 const Cinema = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleCinema = (cinemaCode) => {
     dispatch({ type: "location", cinemaCode });
@@ -19,7 +17,7 @@ const Cinema = () => {
 
   return (
     <div className="m-container d-flex py-5">
-      <div className="col-1">
+      <div className="col-1 border-end">
         {cinema?.map((cinema) => {
           return (
             <button
@@ -36,7 +34,7 @@ const Cinema = () => {
           );
         })}
       </div>
-      <div className="col-5 cinema">
+      <div className="col-5 cinema border-end">
         <CinemasList />
       </div>
       <div className="col-6 cinema">

@@ -19,10 +19,10 @@ const MovieShowing = () => {
 
 
   const settings = {
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 5,
+    slidesToShow: 4,
     slidesToScroll: 4,
   };
 
@@ -44,7 +44,7 @@ const MovieShowing = () => {
           <div key={movie.maPhim}>
             <img className="rounded-2 movieShow " src={movie.hinhAnh} alt="" />
             <div className="text-start">
-            <button className="btn btn-outline-info mt-3 w-50" onClick={() => goToMovie(movie.maPhim)}>Chi tiết</button>
+            <button className="btn-style mt-3 w-75" onClick={() => goToMovie(movie.maPhim)}>Mua vé</button>
             </div>
           </div>
         );
