@@ -18,7 +18,7 @@ const Cinema = () => {
   } = useRequest(() => movieAPI.getCinema());
 
   return (
-    <div className="m-container d-flex ">
+    <div className="m-container d-flex py-5">
       <div className="col-1">
         {cinema?.map((cinema) => {
           return (
@@ -36,10 +36,10 @@ const Cinema = () => {
           );
         })}
       </div>
-      <div className="col-5">
+      <div className="col-5 cinema">
         <CinemasList />
       </div>
-      <div className="col-6">
+      <div className="col-6 cinema">
         <MovieShowTime />
       </div>
     </div>

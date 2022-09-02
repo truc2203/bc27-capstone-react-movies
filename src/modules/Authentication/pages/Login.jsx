@@ -63,11 +63,11 @@ const Login = () => {
       });
     }
   };
-
+//Login thi ko can kiem tra cai nay, va vao login de login ma kiem tra login thi se sai logic
   // Đã đăng nhập
-  if (user) {
-    return <Navigate to="/" />;
-  }
+  // if (user) {
+  //   return <Navigate to="/" />;
+  // }
 
   return (
     <div>

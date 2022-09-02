@@ -11,14 +11,14 @@ import CheckoutRoute from "routes/CheckoutRoute";
 // Không import trực tiếp các pages, vì nó sẽ được tải tất cả ở lần đầu tiên
 // import Home from "modules/Home/pages/Home";
 // import Movie from "modules/Movie/pages/Movie";
-// import Login from "modules/Authentication/pages/Login";
-// import Register from "modules/Authentication/pages/Register";
+import Login from "modules/Authentication/pages/Login";
+import Register from "modules/Authentication/pages/Register";
 
 // Để chỉ cần tải những pages cần thiết ta sử dụng kĩ thuật lazyload
 const Home = lazy(() => import("modules/Home/pages/Home"));
 const Movie = lazy(() => import("modules/Movie/pages/Movie"));
-const Login = lazy(() => import("modules/Authentication/pages/Login"));
-const Register = lazy(() => import("modules/Authentication/pages/Register"));
+// const Login = lazy(() => import("modules/Authentication/pages/Login"));
+// const Register = lazy(() => import("modules/Authentication/pages/Register"));
 
 const MovieList = lazy(() => import("modules/AdminMovie/pages/MovieList"));
 const AddMovie = lazy(() => import("modules/AdminMovie/pages/AddMovie"));
@@ -66,8 +66,8 @@ function App() {
         </Route>
 
         <Route path="/" element={<AuthLayout />}>
-          <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
+          <Route path="login" element={<Login />} />
         </Route>
       </Routes>
     </Suspense>

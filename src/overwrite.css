@@ -1,7 +1,9 @@
 .ant-layout-header{
-    background: #000000;
+    background: #252424;
 }
-
+.ant-layout-footer{
+    background:#0b0b2b ;
+}
 .collapse{
     flex-direction: row-reverse;
     font-size: 14px;
