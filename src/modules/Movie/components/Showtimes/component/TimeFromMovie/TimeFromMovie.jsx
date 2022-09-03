@@ -14,7 +14,9 @@ const TimeFromMovie = ({ movieId }) => {
 
   const { movies, moviesList } = useSelector((state) => state.movie);
 
-  
+  const handleBooking = (timeId) => {
+      navigate(`/booking/${timeId}`)
+  }  
   return (
     <div>
       {moviesShow?.map((movie) => {
@@ -57,12 +59,13 @@ const TimeFromMovie = ({ movieId }) => {
                               {movieList.lstLichChieuTheoPhim.map(
                                 (showTimes) => {
                                   return (
-                                    <p
+                                    <button 
+                                      onClick={() => handleBooking(showTimes.maLichChieu)}
                                       className="showtimes d-inline-block "
                                       key={showTimes.maLichChieu}
                                     >
                                       {showTimes.ngayChieuGioChieu}
-                                    </p>
+                                    </button>
                                   );
                                 }
                               )}

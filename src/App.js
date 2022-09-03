@@ -13,6 +13,7 @@ import CheckoutRoute from "routes/CheckoutRoute";
 // import Movie from "modules/Movie/pages/Movie";
 import Login from "modules/Authentication/pages/Login";
 import Register from "modules/Authentication/pages/Register";
+import Booking from "modules/Booking/Page/Booking";
 
 // Để chỉ cần tải những pages cần thiết ta sử dụng kĩ thuật lazyload
 const Home = lazy(() => import("modules/Home/pages/Home"));
@@ -45,7 +46,6 @@ function App() {
         >
           <Route path="movies" element={<MovieList />} />
           <Route path="movies/add" element={<AddMovie />} />
-
           {/* AdminUser, AdminShowtimes */}
         </Route>
 
@@ -63,6 +63,7 @@ function App() {
               </CheckoutRoute>
             }
           />
+          <Route path="booking/:timeId" element={<Booking />}/>
         </Route>
 
         <Route path="/" element={<AuthLayout />}>

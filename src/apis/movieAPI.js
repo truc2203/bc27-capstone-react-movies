@@ -33,6 +33,14 @@ const movieAPI = {
     })
     
   },
+
+  getChairList: (timeId) => {
+    return axiosClient.get('QuanLyDatVe/LayDanhSachPhongVe',{
+      params:{
+        maLichChieu:timeId
+      }
+    })
+  },
   addMovie: (movie) => {
     // Đối với dữ liệu có định dạng đặc biệt như File,...
     // Ta cần phải tạo ra FormData để lưu trữ

@@ -17,6 +17,10 @@ const MovieShowTime = () => {
   const handleMovieShowing = (movieId) => {
       navigate(`/movie/${movieId}`)
   }
+
+  const handleBooking = (timeId) =>{
+      navigate(`/booking/${timeId}`)
+  }
   return (
     <div>
       {moviesShow?.map((movie) => {
@@ -53,9 +57,9 @@ const MovieShowTime = () => {
                             </button>
                             {movieList.lstLichChieuTheoPhim.map((showTimes) => {
                               return (
-                                <p className="showtimes d-inline-block " key={showTimes.maLichChieu}>
+                                <button onClick={() => handleBooking(showTimes.maLichChieu)} className="showtimes d-inline-block " key={showTimes.maLichChieu}>
                                   {showTimes.ngayChieuGioChieu}
-                                </p>
+                                </button>
                               );
                             })}
                           </div>
