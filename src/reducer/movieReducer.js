@@ -22,7 +22,8 @@ const movieReducer = (state = initialState,action) => {
             (chair) => chair.tenGhe !== action.isBooking.tenGhe
           );
           return { ...state, bookingList: newChair };
-          
+        case 'remove' :
+          return {...state, bookingList:[]}
         default:
             return state;
     }

@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import movieAPI from "apis/movieAPI";
 import useRequest from "hooks/useRequest";
 import { useNavigate } from "react-router-dom";
@@ -12,10 +12,12 @@ const TimeFromMovie = ({ movieId }) => {
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch()
 
   const { movies, moviesList } = useSelector((state) => state.movie);
 
   const handleBooking = (timeId) => {
+      dispatch({type:'remove'})
       navigate(`/booking/${timeId}`)
   }  
   return (

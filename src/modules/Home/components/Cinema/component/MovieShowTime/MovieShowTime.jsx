@@ -1,7 +1,7 @@
 import React from "react";
 import movieAPI from "apis/movieAPI";
 import useRequest from "hooks/useRequest";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 const MovieShowTime = () => {
   const {
@@ -11,7 +11,7 @@ const MovieShowTime = () => {
   } = useRequest(() => movieAPI.showCinemasList());
 
   const navigate = useNavigate()
-
+  const dispatch = useDispatch()
   const { movies, moviesList } = useSelector((state) => state.movie);
 
   const handleMovieShowing = (movieId) => {
@@ -19,6 +19,7 @@ const MovieShowTime = () => {
   }
 
   const handleBooking = (timeId) =>{
+      dispatch({type:'remove'})
       navigate(`/booking/${timeId}`)
   }
   return (
