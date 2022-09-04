@@ -12,6 +12,7 @@ const TimeFromMovie = ({ movieId }) => {
 
   const navigate = useNavigate();
 
+
   const { movies, moviesList } = useSelector((state) => state.movie);
 
   const handleBooking = (timeId) => {

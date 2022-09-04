@@ -11,7 +11,7 @@ const Booking = () => {
         <ChairList timeId={timeId}/>
         </div>
         <div className="col-4">
-        <BookingInfo/>
+        <BookingInfo timeId={timeId}/>
         </div>
     </div>
   )

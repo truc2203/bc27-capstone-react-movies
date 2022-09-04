@@ -142,20 +142,21 @@ h6 {
 }
 
 .chairs {
+  color: #ffffff;
+  background-color: #514e4e;
   font-size: 14px;
   font-weight: 500;
   margin-right: 14px;
   align-items: baseline;
   border: none;
   border-radius: 4px;
-  background-color: #ffa500;
   width: 30px;
   height: 30px;
   transition: all 0.5s;
 }
 
 .chairs:hover{
-  background-color: #108f3e;
+  background-color: #d10b0b;
   color: #ffffff;
   transition: all 0.5s;
 }
