@@ -26,4 +26,7 @@
     color: #d7ee04;
 }
 
+.ant-breadcrumb ol {
+    flex-direction: column;
+}
 

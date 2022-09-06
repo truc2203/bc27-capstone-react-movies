@@ -14,7 +14,7 @@ import CheckoutRoute from "routes/CheckoutRoute";
 import Login from "modules/Authentication/pages/Login";
 import Register from "modules/Authentication/pages/Register";
 import Booking from "modules/Booking/Page/Booking";
-
+import AdminLayout from "modules/AdminMovie/AdminLayout";
 // Để chỉ cần tải những pages cần thiết ta sử dụng kĩ thuật lazyload
 const Home = lazy(() => import("modules/Home/pages/Home"));
 const Movie = lazy(() => import("modules/Movie/pages/Movie"));
@@ -38,10 +38,7 @@ function App() {
             //   <AdminLayout />
             // </AdminRoute>
 
-            <div>
-              <h1>Admin Layout</h1>
-              <Outlet />
-            </div>
+            <AdminLayout/>
           }
         >
           <Route path="movies" element={<MovieList />} />
