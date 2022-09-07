@@ -1,11 +1,11 @@
 import useRequest from "hooks/useRequest";
 import movieAPI from "apis/movieAPI";
-import { FileOutlined, TeamOutlined, UserOutlined } from "@ant-design/icons";
+import { FileOutlined, VideoCameraOutlined , UserOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";
 import React, { useState } from "react";
 import {FcEmptyTrash,FcSettings} from 'react-icons/fc'
+import { Outlet, useNavigate } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
-
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -17,7 +17,7 @@ function getItem(label, key, icon, children) {
 
 const items = [
   getItem("Người dùng", "sub1", <UserOutlined />, [getItem("Tom", "3")]),
-  getItem("Phim", "sub2", <TeamOutlined />, [
+  getItem("Phim", "sub2", <VideoCameraOutlined /> , [
     getItem("Thêm Phim", "6"),
     getItem("Edit Phim", "8"),
   ]),
@@ -30,6 +30,7 @@ const AdminLayout = () => {
     isLoading,
     error,
   } = useRequest(() => movieAPI.getMovies());
+  const navigate = useNavigate()
 
   const [collapsed, setCollapsed] = useState(false);
   return (
@@ -136,7 +137,6 @@ const AdminLayout = () => {
             textAlign: "center",
           }}
         >
-          Ant Design ©2018 Created by Ant UED
         </Footer>
       </Layout>
     </Layout>

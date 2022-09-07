@@ -1,13 +1,13 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route, Outlet } from "react-router-dom";
-import './overwrite.css'
-import './index.css'
-import "slick-carousel/slick/slick.css"; 
+import "./overwrite.css";
+import "./index.css";
+import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import MainLayout from "components/MainLayout";
 import AuthLayout from "components/AuthLayout";
 import CheckoutRoute from "routes/CheckoutRoute";
-
+import AdminRoute from "components/Admin/AdminRoute";
 // Không import trực tiếp các pages, vì nó sẽ được tải tất cả ở lần đầu tiên
 // import Home from "modules/Home/pages/Home";
 // import Movie from "modules/Movie/pages/Movie";
@@ -15,13 +15,14 @@ import Login from "modules/Authentication/pages/Login";
 import Register from "modules/Authentication/pages/Register";
 import Booking from "modules/Booking/Page/Booking";
 import AdminLayout from "modules/AdminMovie/AdminLayout";
+import EditMovie from "modules/AdminMovie/pages/EditMovie";
 // Để chỉ cần tải những pages cần thiết ta sử dụng kĩ thuật lazyload
 const Home = lazy(() => import("modules/Home/pages/Home"));
 const Movie = lazy(() => import("modules/Movie/pages/Movie"));
 // const Login = lazy(() => import("modules/Authentication/pages/Login"));
 // const Register = lazy(() => import("modules/Authentication/pages/Register"));
 
-const MovieList = lazy(() => import("modules/AdminMovie/pages/MovieList"));
+const MovieList = lazy(() => import("modules/AdminMovie/pages/EditMovie"));
 const AddMovie = lazy(() => import("modules/AdminMovie/pages/AddMovie"));
 
 function App() {
@@ -34,14 +35,14 @@ function App() {
           element={
             // TODO: chuyển vào component AdminLayout
             // TODO: tạo AdminRoute kiểm tra xem user có phải là QuanTri hay không
-            // <AdminRoute>
-            //   <AdminLayout />
-            // </AdminRoute>
+            <AdminRoute />
 
-            <AdminLayout/>
+            // <AdminLayout />
+            // <Outlet/>
           }
         >
-          <Route path="movies" element={<MovieList />} />
+          <Route index element={<AdminLayout />} />
+          <Route path="movies/edit" element={<EditMovie />} />
           <Route path="movies/add" element={<AddMovie />} />
           {/* AdminUser, AdminShowtimes */}
         </Route>
@@ -60,7 +61,7 @@ function App() {
               </CheckoutRoute>
             }
           />
-          <Route path="booking/:timeId" element={<Booking />}/>
+          <Route path="booking/:timeId" element={<Booking />} />
         </Route>
 
         <Route path="/" element={<AuthLayout />}>
