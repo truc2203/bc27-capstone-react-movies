@@ -23,6 +23,10 @@ h6 {
   margin: auto;
 }
 
+.w-15{
+  width: 150px;
+}
+
 /* Banner */
 .banner-h {
   height: 40vw;
@@ -31,7 +35,7 @@ h6 {
 /* Cinema */
 .movieShow {
   width: 15vw;
-  height: 300px;
+  height: 280px;
 }
 
 .cinema-logo {
@@ -179,4 +183,12 @@ h6 {
 
 .site-layout .site-layout-background {
   background: #fff;
+}
+
+
+/* Admin add movie */
+.inputAddMovie{
+  border: 1px solid #848282;
+  border-radius: 4px;
+  padding: 2px;
 }

@@ -53,7 +53,13 @@ const movieAPI = {
 
     return axiosClient.post("QuanLyPhim/ThemPhimUploadHinh", formData);
   },
-
+  deleteMovie: (movieId) => {
+      return axiosClient.delete('QuanLyPhim/XoaPhim',{
+        params:{
+          maPhim:movieId
+        }
+      })
+  }
 };
 
 export default movieAPI;

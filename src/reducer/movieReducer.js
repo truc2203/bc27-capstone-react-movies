@@ -1,7 +1,8 @@
 const initialState = {
      movies:null,
      moviesList:null,
-     bookingList:[]
+     bookingList:[],
+     movieId:null
 }
 
 const movieReducer = (state = initialState,action) => {
@@ -24,6 +25,8 @@ const movieReducer = (state = initialState,action) => {
           return { ...state, bookingList: newChair };
         case 'remove' :
           return {...state, bookingList:[]}
+        case 'getMovieId' :
+            return {...state,movieId:action.movie}
         default:
             return state;
     }

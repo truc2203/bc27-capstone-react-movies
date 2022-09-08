@@ -4,9 +4,9 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Breadcrumb, Layout, Menu } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 
-import { useNavigate } from "react-router-dom";
 import {
   FileOutlined,
   VideoCameraOutlined,
@@ -29,7 +29,7 @@ const items = [
   getItem("Quản Lý Phim", "sub2", <VideoCameraOutlined />),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
-const AddMovie = () => {
+const AddShowTime = () => {
   const [imgPreview, setImgPreview] = useState("");
   const [collapsed, setCollapsed] = useState(false);
   const { register, handleSubmit, setValue } = useForm({
@@ -47,14 +47,11 @@ const AddMovie = () => {
   const movePath = (path) => {
     navigate(path);
   };
-
+  const [startDate, setStartDate] = useState(new Date());
   const { data: handleAddMovie, isLoading } = useRequest(
     (values) => movieAPI.addMovie(values),
     { isManual: true }
   );
-
-  const [startDate, setStartDate] = useState(new Date());
-
 
   const onSubmit = async (values) => {
     try {
@@ -122,7 +119,7 @@ const AddMovie = () => {
             }}
           >
             <div className="d-flex justify-content-between">
-              <h5 className="text-dark mb-3">Thêm Phim Mới</h5>
+              <h5 className="text-dark mb-3">Tạo Lịch Chiếu</h5>
               <button onClick={() => movePath("../")} className="btn-style">
                 <BsFillArrowLeftCircleFill /> Quản Lý Phim
               </button>
@@ -137,7 +134,9 @@ const AddMovie = () => {
           >
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="pb-5">
-                <div className="d-inline-block w-15 text-end">Tên Phim : </div>
+                <div className="d-inline-block w-15 text-end">
+                  Hệ Thống Rạp :{" "}
+                </div>
                 <input
                   className="ms-1 inputAddMovie w-75"
                   type="text"
@@ -154,7 +153,7 @@ const AddMovie = () => {
                 />
               </div> */}
               <div className="pb-5">
-                <div className="d-inline-block w-15 text-end">Trailer : </div>
+                <div className="d-inline-block w-15 text-end">Cụm Rạp : </div>
                 <input
                   className="ms-1 inputAddMovie w-75"
                   type="text"
@@ -163,17 +162,8 @@ const AddMovie = () => {
                 />
               </div>
               <div className="pb-5">
-                <div className="d-inline-block w-15 text-end">Mô Tả : </div>
-                <input
-                  className="ms-1 inputAddMovie w-75"
-                  type="text"
-                  placeholder="Mô Tả"
-                  {...register("moTa")}
-                />
-              </div>
-              <div className="pb-5">
                 <div className="d-inline-block w-15 text-end">
-                  Ngày Khởi Chiếu :{" "}
+                  Ngày Giờ Chiếu :{" "}
                 </div>
                 <span className="d-inline-block">
                   {" "}
@@ -185,18 +175,15 @@ const AddMovie = () => {
                 </span>
               </div>
               <div className="pb-5">
-                {/* <input cl5ssName="inputAddMovie w-75" type="file" placeholder="Hình Ảnh" {...register("hinhAnh")} /> */}
-                <div className="d-inline-block w-15 text-end">Hình Ảnh : </div>
+                <div className="d-inline-block w-15 text-end">Giá Vé : </div>
                 <input
-                  className="ms-1 "
-                  type="file"
-                  placeholder="Hình Ảnh"
-                  onChange={handleChangeImage}
+                  className="ms-1 inputAddMovie w-75"
+                  type="text"
+                  {...register("ngayKhoiChieu")}
                 />
               </div>
-              {imgPreview && <img src={imgPreview} alt="preview" />}
 
-              <button className="btn btn-info ms-5">Thêm Phim</button>
+              <button className="btn btn-info ms-5">Tạo Lịch Chiếu</button>
             </form>
           </div>
         </Content>
@@ -210,4 +197,4 @@ const AddMovie = () => {
   );
 };
 
-export default AddMovie;
+export default AddShowTime;

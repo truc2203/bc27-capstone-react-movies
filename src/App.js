@@ -4,6 +4,7 @@ import "./overwrite.css";
 import "./index.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import "react-datepicker/dist/react-datepicker.css";
 import MainLayout from "components/MainLayout";
 import AuthLayout from "components/AuthLayout";
 import CheckoutRoute from "routes/CheckoutRoute";
@@ -16,6 +17,7 @@ import Register from "modules/Authentication/pages/Register";
 import Booking from "modules/Booking/Page/Booking";
 import AdminLayout from "modules/AdminMovie/AdminLayout";
 import EditMovie from "modules/AdminMovie/pages/EditMovie";
+import AddShowTime from "modules/AdminMovie/pages/AddShowTime";
 // Để chỉ cần tải những pages cần thiết ta sử dụng kĩ thuật lazyload
 const Home = lazy(() => import("modules/Home/pages/Home"));
 const Movie = lazy(() => import("modules/Movie/pages/Movie"));
@@ -42,8 +44,9 @@ function App() {
           }
         >
           <Route index element={<AdminLayout />} />
-          <Route path="movies/edit" element={<EditMovie />} />
+          <Route path="movies/edit/:movieId" element={<EditMovie />} />
           <Route path="movies/add" element={<AddMovie />} />
+          <Route path="movies/showtime" element={<AddShowTime/>} />
           {/* AdminUser, AdminShowtimes */}
         </Route>
 
