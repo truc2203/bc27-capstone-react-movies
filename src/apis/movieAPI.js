@@ -53,12 +53,17 @@ const movieAPI = {
 
     return axiosClient.post("QuanLyPhim/ThemPhimUploadHinh", formData);
   },
-  deleteMovie: (movieId) => {
+  deleteMovie: (movieId,auth) => {
       return axiosClient.delete('QuanLyPhim/XoaPhim',{
+        headers:{
+          Authorization:`Bearer ${auth}`
+        },
         params:{
           maPhim:movieId
         }
-      })
+      }
+      )
+      
   }
 };
 
