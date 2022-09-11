@@ -48,7 +48,7 @@ const Register = () => {
   };
 
   return (
-    <div className="logo">
+    <div className="logo-register">
       <h1>Register</h1>
       <form
         className="form-register"
@@ -115,7 +115,10 @@ const Register = () => {
             type="text"
             placeholder="Họ Tên"
             {...register("hoTen", {
-              required: { value: true, message: "Họ tên không được để trống" },
+              required: {
+                value: true,
+                message: "Họ tên không được để trống",
+              },
             })}
           />
           {errors.hoTen && <p>{errors.hoTen.message}</p>}

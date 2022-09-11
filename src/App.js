@@ -27,6 +27,9 @@ const Movie = lazy(() => import("modules/Movie/pages/Movie"));
 const MovieList = lazy(() => import("modules/AdminMovie/pages/EditMovie"));
 const AddMovie = lazy(() => import("modules/AdminMovie/pages/AddMovie"));
 
+const AddUser = lazy(() => import("modules/AdminUser/pages/AddUser"));
+const UserList = lazy(() => import("modules/AdminUser/pages/UserList"));
+
 function App() {
   return (
     // Suspense: hiển thị fallback UI (Loading) khi các file JS của một page đang được tải về
@@ -46,8 +49,21 @@ function App() {
           <Route index element={<AdminLayout />} />
           <Route path="movies/edit/:movieId" element={<EditMovie />} />
           <Route path="movies/add" element={<AddMovie />} />
-          <Route path="movies/showtime" element={<AddShowTime/>} />
+          <Route path="movies/showtime" element={<AddShowTime />} />
           {/* AdminUser, AdminShowtimes */}
+        </Route>
+        <Route
+          path="/admin"
+          element={
+            <AdminRoute />
+            // <div>
+            //   <h1>User Layout</h1>
+            //   <Outlet />
+            // </div>
+          }
+        >
+          <Route path="users" element={<UserList />} />
+          <Route path="users/add" element={<AddUser />} />
         </Route>
 
         {/* Để các routes có cùng chung 1 layout, ta sử dụng kĩ thuật nested route, route parent đi định nghĩa layout component, bên trong route parent sẽ gọi tới cái children routes */}

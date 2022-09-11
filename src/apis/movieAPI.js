@@ -22,24 +22,23 @@ const movieAPI = {
   },
 
   getCinema: () => {
-    return axiosClient.get('QuanLyRap/LayThongTinHeThongRap')  
+    return axiosClient.get("QuanLyRap/LayThongTinHeThongRap");
   },
 
   showCinemasList: () => {
-    return axiosClient.get('QuanLyRap/LayThongTinLichChieuHeThongRap',{
-      params:{
-        maNhom:'GP01'
-      }
-    })
-    
+    return axiosClient.get("QuanLyRap/LayThongTinLichChieuHeThongRap", {
+      params: {
+        maNhom: "GP01",
+      },
+    });
   },
 
   getChairList: (timeId) => {
-    return axiosClient.get('QuanLyDatVe/LayDanhSachPhongVe',{
-      params:{
-        maLichChieu:timeId
-      }
-    })
+    return axiosClient.get("QuanLyDatVe/LayDanhSachPhongVe", {
+      params: {
+        maLichChieu: timeId,
+      },
+    });
   },
   addMovie: (movie) => {
     // Đối với dữ liệu có định dạng đặc biệt như File,...
@@ -53,18 +52,39 @@ const movieAPI = {
 
     return axiosClient.post("QuanLyPhim/ThemPhimUploadHinh", formData);
   },
-  deleteMovie: (movieId,auth) => {
-      return axiosClient.delete('QuanLyPhim/XoaPhim',{
-        headers:{
-          Authorization:`Bearer ${auth}`
-        },
-        params:{
-          maPhim:movieId
-        }
-      }
-      )
-      
-  }
+  deleteMovie: (movieId, auth) => {
+    return axiosClient.delete("QuanLyPhim/XoaPhim", {
+      headers: {
+        Authorization: `Bearer ${auth}`,
+      },
+      params: {
+        maPhim: movieId,
+      },
+    });
+  },
+  addUser: (user) => {
+    return axiosClient.post("QuanLyNguoiDung/ThemNguoiDung", user);
+  },
+  deleteUser: (userId, auth) => {
+    return axiosClient.delete("QuanLyNguoiDung/XoaNguoiDung", {
+      headers: {
+        Authorization: `Bearer ${auth}`,
+      },
+      params: {
+        taiKhoan: userId,
+      },
+    });
+  },
+  updateUser: (userId, auth) => {
+    return axiosClient.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", {
+      headers: {
+        Authorization: `Bearer ${auth}`,
+      },
+      params: {
+        taiKhoan: userId,
+      },
+    });
+  },
 };
 
 export default movieAPI;
