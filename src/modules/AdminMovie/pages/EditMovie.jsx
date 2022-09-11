@@ -72,7 +72,7 @@ const EditMovie = () => {
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
       >
-        <div className="logo" />
+        <div className="admin-logo" />
         <Menu
           theme="dark"
           defaultSelectedKeys={["1"]}

@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { Breadcrumb, Layout, Menu } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import DatePicker from "react-datepicker";
-
+import { notification } from "antd";
 import { useNavigate } from "react-router-dom";
 import {
   FileOutlined,
@@ -35,11 +35,14 @@ const AddMovie = () => {
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
       tenPhim: "",
-      biDanh: "",
       moTa: "",
       trailer: "",
       hinhAnh: "",
+      danhGia: "",
       ngayKhoiChieu: "",
+      dangChieu:true,
+      sapChieu:true,
+      hot:true
     },
     mode: "onTouched",
   });
@@ -52,17 +55,20 @@ const AddMovie = () => {
     (values) => movieAPI.addMovie(values),
     { isManual: true }
   );
-
   const [startDate, setStartDate] = useState(new Date());
-
 
   const onSubmit = async (values) => {
     try {
       await handleAddMovie(values);
-      // Thành công: gọi notification
-      // Redirect về trang MovieList
+      movePath('../')
+      notification.success({
+        message:'Thêm phim thành công'
+      })
     } catch (error) {
       // Thất bại: gọi notification hiển thị error
+      notification.warning({
+        message:'Thêm phim thất bại'
+      })
     }
   };
 
@@ -96,7 +102,7 @@ const AddMovie = () => {
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
       >
-        <div className="logo" />
+        <div className="admin-logo" />
         <Menu
           theme="dark"
           defaultSelectedKeys={["1"]}
@@ -181,8 +187,66 @@ const AddMovie = () => {
                     className="ms-1 inputAddMovie w-75 "
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}
+                    {...register("ngayKhoiChieu")}
                   />
                 </span>
+              </div>
+              <div className="pb-5">
+                <div className="d-inline-block w-15 text-end">
+                  Đang Chiếu :{" "}
+                </div>
+                <div className="form-check form-switch ms-3 d-inline-block">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchCheckDefault"
+                    {...register("dangChieu")}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexSwitchCheckDefault"
+                  >
+                  </label>
+                </div>
+              </div>
+              <div className="pb-5">
+                <div className="d-inline-block w-15 text-end">
+                  Sắp Chiếu :{" "}
+                </div>
+                <div className="form-check form-switch ms-3 d-inline-block">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchCheckDefault"
+                    {...register("sapChieu")}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexSwitchCheckDefault"
+                  >
+                  </label>
+                </div>
+              </div>
+              <div className="pb-5">
+                <div className="d-inline-block w-15 text-end">
+                  Hot :{" "}
+                </div>
+                <div className="form-check form-switch ms-3 d-inline-block">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    role="switch"
+                    id="flexSwitchCheckDefault"
+                    {...register("hot")}
+                  />
+                  <label
+                    className="form-check-label"
+                    htmlFor="flexSwitchCheckDefault"
+                  >
+                  </label>
+                </div>
               </div>
               <div className="pb-5">
                 {/* <input cl5ssName="inputAddMovie w-75" type="file" placeholder="Hình Ảnh" {...register("hinhAnh")} /> */}
