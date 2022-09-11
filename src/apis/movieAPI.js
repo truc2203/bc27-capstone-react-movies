@@ -44,12 +44,21 @@ const movieAPI = {
     // Đối với dữ liệu có định dạng đặc biệt như File,...
     // Ta cần phải tạo ra FormData để lưu trữ
     const formData = new FormData();
+
     // Duyệt qua từng thuộc tính trong object movie và thêm vào formData
     for (let key in movie) {
-      formData.append(key, movie[key]);
+      formData.append(key,movie[key])
     }
-    formData.append("maNhom", "GP01");
-
+    // formData.append("maNhom", "GP01");
+    // formData.append('tenPhim',movie.tenPhim);
+    // formData.append('trailer',movie.trailer);
+    // formData.append('moTa',movie.moTa);
+    // formData.append('ngayKhoiChieu',movie.ngayKhoiChieu);
+    // formData.append('sapChieu', `${movie.sapChieu}`);
+    // formData.append('dangChieu', `${movie.dangChieu}`);
+    // formData.append('hot', `${movie.hot}`);
+    // formData.append('danhGia',movie.danhGia);
+    // formData.append('hinhAnh',movie.hinhAnh[0].name);;
     return axiosClient.post("QuanLyPhim/ThemPhimUploadHinh", formData);
   },
   deleteMovie: (movieId, auth) => {
