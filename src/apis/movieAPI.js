@@ -47,7 +47,7 @@ const movieAPI = {
 
     // Duyệt qua từng thuộc tính trong object movie và thêm vào formData
     for (let key in movie) {
-      formData.append(key,movie[key])
+      formData.append(key, movie[key]);
     }
     // formData.append("maNhom", "GP01");
     // formData.append('tenPhim',movie.tenPhim);
@@ -71,29 +71,8 @@ const movieAPI = {
       },
     });
   },
-  addUser: (user) => {
-    return axiosClient.post("QuanLyNguoiDung/ThemNguoiDung", user);
-  },
-  deleteUser: (userId, auth) => {
-    return axiosClient.delete("QuanLyNguoiDung/XoaNguoiDung", {
-      headers: {
-        Authorization: `Bearer ${auth}`,
-      },
-      params: {
-        taiKhoan: userId,
-      },
-    });
-  },
-  updateUser: (userId, auth) => {
-    return axiosClient.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", {
-      headers: {
-        Authorization: `Bearer ${auth}`,
-      },
-      params: {
-        taiKhoan: userId,
-      },
-    });
-  },
+  
+  
 };
 
 export default movieAPI;

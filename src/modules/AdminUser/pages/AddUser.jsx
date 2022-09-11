@@ -1,4 +1,3 @@
-import movieAPI from "apis/movieAPI";
 import useRequest from "hooks/useRequest";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -11,6 +10,7 @@ import {
   VideoCameraOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import authAPI from "apis/authAPI";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -45,7 +45,7 @@ const AddUser = () => {
     navigate(path);
   };
   const { data: handleAddUser, isLoading } = useRequest(
-    (values) => movieAPI.addUser(values),
+    (values) => authAPI.register(values),
     { isManual: true }
   );
   const onSubmit = async (values) => {
@@ -53,7 +53,7 @@ const AddUser = () => {
       await handleAddUser(values);
       // Thành công: gọi notification
       // Redirect về trang MovieList
-      navigate("/users");
+      navigate("/admin/users");
     } catch (error) {
       notification.error({
         message: "Đăng kí thất bại",
