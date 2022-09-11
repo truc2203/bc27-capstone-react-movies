@@ -23,7 +23,7 @@ h6 {
   margin: auto;
 }
 
-.w-15{
+.w-15 {
   width: 150px;
 }
 
@@ -159,20 +159,34 @@ h6 {
   transition: all 0.5s;
 }
 
-.chairs:hover{
+.chairs:hover {
   background-color: #d10b0b;
   color: #ffffff;
   transition: all 0.5s;
 }
 
-
 /* Register */
-.logo{
-  background-image: url('./img/download.jpg');
-  height: 60px;
+.logo {
+  background-image: url("./img/backapp.b46ef3a1.jpg");
+  height: 900px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  width: 100%;
+  padding: 100px 600px;
+}
+.ant-row {
+  display: block;
+}
+.ant-col-8 {
+  max-width: 100%;
+}
+.ant-col-14 {
+  display: none;
+}
+.form-register {
+  background-color: white;
+  padding: 20px 40px;
 }
 
 #components-layout-demo-side .logo {
@@ -184,10 +198,23 @@ h6 {
 .site-layout .site-layout-background {
   background: #fff;
 }
-
+/* Login */
+.login {
+  background-image: url("./img/backapp.b46ef3a1.jpg");
+  height: 900px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  padding: 100px 500px;
+}
+.form-login{
+ background-color: white;
+ padding: 10px 15px;
+}
 
 /* Admin add movie */
-.inputAddMovie{
+.inputAddMovie {
   border: 1px solid #848282;
   border-radius: 4px;
   padding: 2px;

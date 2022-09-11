@@ -48,11 +48,15 @@ const Register = () => {
   };
 
   return (
-    <div>
+    <div className="logo">
       <h1>Register</h1>
-      <form onSubmit={handleSubmit(onSubmit, onError)}>
+      <form
+        className="form-register"
+        onSubmit={handleSubmit(onSubmit, onError)}
+      >
         <div>
           <input
+            className="form-control mb-3"
             type="text"
             placeholder="Tài Khoản"
             {...register("taiKhoan", {
@@ -73,16 +77,24 @@ const Register = () => {
           {errors.taiKhoan && <p>{errors.taiKhoan.message}</p>}
         </div>
 
-        <input
-          type="text"
-          placeholder="Mật Khẩu"
-          {...register("matKhau", {
-            required: true,
-          })}
-        />
+        <div>
+          <input
+            className="form-control mb-3"
+            type="text"
+            placeholder="Mật Khẩu"
+            {...register("matKhau", {
+              required: {
+                value: true,
+                message: "Mật khẩu không được để trống",
+              },
+            })}
+          />
+          {errors.matKhau && <p>{errors.matKhau.message}</p>}
+        </div>
 
         <div>
           <input
+            className="form-control mb-3"
             type="text"
             placeholder="Email"
             {...register("email", {
@@ -97,21 +109,34 @@ const Register = () => {
           {errors.email && <p>{errors.email.message}</p>}
         </div>
 
-        <input
-          type="text"
-          placeholder="Họ Tên"
-          {...register("hoTen", {
-            required: true,
-          })}
-        />
-        <input
-          type="text"
-          placeholder="Số Điện Thoại"
-          {...register("soDt", {
-            required: true,
-          })}
-        />
-        <button>Đăng Ký</button>
+        <div>
+          <input
+            className="form-control "
+            type="text"
+            placeholder="Họ Tên"
+            {...register("hoTen", {
+              required: { value: true, message: "Họ tên không được để trống" },
+            })}
+          />
+          {errors.hoTen && <p>{errors.hoTen.message}</p>}
+        </div>
+        <br />
+        <div>
+          <input
+            className="form-control mb-3"
+            type="text"
+            placeholder="Số Điện Thoại"
+            {...register("soDt", {
+              required: {
+                value: true,
+                message: "Số Điện Thoại không được để trống",
+              },
+            })}
+          />
+          {errors.soDt && <p>{errors.soDt.message}</p>}
+        </div>
+        <br />
+        <button className="btn btn-success">Đăng Ký</button>
       </form>
     </div>
   );

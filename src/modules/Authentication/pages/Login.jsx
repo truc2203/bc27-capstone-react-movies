@@ -70,9 +70,9 @@ const Login = () => {
   // }
 
   return (
-    <div>
+    <div className="login">
       <h1>Login</h1>
-      <Form
+      <Form className="form-login"
         onFinish={handleSubmit(onSubmit)}
         labelCol={{ span: 2 }}
         wrapperCol={{ span: 8 }}
