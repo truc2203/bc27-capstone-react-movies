@@ -45,7 +45,7 @@ const AdminLayout = () => {
     movieAPI.deleteMovie(movieId, auth);
   };
   const [collapsed, setCollapsed] = useState(false);
-  if (user.maLoaiNguoiDung !== "QuanTri") {
+  if (!user || user.maLoaiNguoiDung !== "QuanTri") {
     return navigate("../../");
   }
   return (
