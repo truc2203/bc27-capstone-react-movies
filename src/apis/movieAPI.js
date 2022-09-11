@@ -50,17 +50,25 @@ const movieAPI = {
     for (let key in movie) {
       formData.append(key,movie[key])
     }
-    // formData.append("maNhom", "GP01");
-    // formData.append('tenPhim',movie.tenPhim);
-    // formData.append('trailer',movie.trailer);
-    // formData.append('moTa',movie.moTa);
-    // formData.append('ngayKhoiChieu',movie.ngayKhoiChieu);
-    // formData.append('sapChieu', `${movie.sapChieu}`);
-    // formData.append('dangChieu', `${movie.dangChieu}`);
-    // formData.append('hot', `${movie.hot}`);
-    // formData.append('danhGia',movie.danhGia);
-    // formData.append('hinhAnh',movie.hinhAnh[0].name);;
+    formData.append('maNhom','GP01')
     return axiosClient.post("QuanLyPhim/ThemPhimUploadHinh", formData);
+  },
+  editMovie: (movieId,auth) => {
+    const formData = new FormData()
+
+    for(let key in movieId){
+      formData.append(key,movieId[key])
+    }
+    formData.append('maNhom','GP01')
+    return axiosClient.post("QuanLyPhim/CapNhatPhimUpload", {
+      headers:{
+        Authorization:`Bearer ${auth}`
+      },
+      params:{
+        frm:formData
+      }
+    });
+
   },
   deleteMovie: (movieId,auth) => {
       return axiosClient.delete('QuanLyPhim/XoaPhim',{

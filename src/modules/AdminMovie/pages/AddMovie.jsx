@@ -40,9 +40,9 @@ const AddMovie = () => {
       hinhAnh: "",
       danhGia: "",
       ngayKhoiChieu: "",
-      dangChieu:true,
-      sapChieu:true,
-      hot:true
+      dangChieu: true,
+      sapChieu: true,
+      hot: true,
     },
     mode: "onTouched",
   });
@@ -60,16 +60,21 @@ const AddMovie = () => {
   const onSubmit = async (values) => {
     try {
       await handleAddMovie(values);
-      movePath('../')
+      movePath("../");
       notification.success({
-        message:'Thêm phim thành công'
-      })
+        message: "Thêm phim thành công",
+      });
     } catch (error) {
       // Thất bại: gọi notification hiển thị error
       notification.warning({
-        message:'Thêm phim thất bại'
-      })
+        message: "Thêm phim thất bại",
+      });
     }
+  };
+
+  const handleDate = (date) => {
+    setStartDate(date);
+    // setValue("ngayKhoiChieu", date);
   };
 
   const handleChangeImage = (evt) => {
@@ -159,7 +164,7 @@ const AddMovie = () => {
                   {...register("biDanh")}
                 />
               </div> */}
-              <div className="pb-5">
+              <div className="pb-4">
                 <div className="d-inline-block w-15 text-end">Trailer : </div>
                 <input
                   className="ms-1 inputAddMovie w-75"
@@ -168,7 +173,7 @@ const AddMovie = () => {
                   {...register("trailer")}
                 />
               </div>
-              <div className="pb-5">
+              <div className="pb-4">
                 <div className="d-inline-block w-15 text-end">Mô Tả : </div>
                 <input
                   className="ms-1 inputAddMovie w-75"
@@ -177,21 +182,24 @@ const AddMovie = () => {
                   {...register("moTa")}
                 />
               </div>
-              <div className="pb-5">
+              <div className="pb-4">
                 <div className="d-inline-block w-15 text-end">
                   Ngày Khởi Chiếu :{" "}
                 </div>
                 <span className="d-inline-block">
                   {" "}
-                  <DatePicker
-                    className="ms-1 inputAddMovie w-75 "
-                    selected={startDate}
-                    onChange={(date) => setStartDate(date)}
-                    {...register("ngayKhoiChieu")}
-                  />
+                  <span className="d-inline-block">
+                    {" "}
+                    <DatePicker
+                      className="ms-1 inputAddMovie w-75 "
+                      selected={startDate}
+                      onSelect={(value) => handleDate(value)}
+                      dateFormat="dd/MM/yyyy"
+                    />
+                  </span>
                 </span>
               </div>
-              <div className="pb-5">
+              <div className="pb-4">
                 <div className="d-inline-block w-15 text-end">
                   Đang Chiếu :{" "}
                 </div>
@@ -206,14 +214,11 @@ const AddMovie = () => {
                   <label
                     className="form-check-label"
                     htmlFor="flexSwitchCheckDefault"
-                  >
-                  </label>
+                  ></label>
                 </div>
               </div>
-              <div className="pb-5">
-                <div className="d-inline-block w-15 text-end">
-                  Sắp Chiếu :{" "}
-                </div>
+              <div className="pb-4">
+                <div className="d-inline-block w-15 text-end">Sắp Chiếu : </div>
                 <div className="form-check form-switch ms-3 d-inline-block">
                   <input
                     className="form-check-input"
@@ -225,14 +230,11 @@ const AddMovie = () => {
                   <label
                     className="form-check-label"
                     htmlFor="flexSwitchCheckDefault"
-                  >
-                  </label>
+                  ></label>
                 </div>
               </div>
-              <div className="pb-5">
-                <div className="d-inline-block w-15 text-end">
-                  Hot :{" "}
-                </div>
+              <div className="pb-4">
+                <div className="d-inline-block w-15 text-end">Hot : </div>
                 <div className="form-check form-switch ms-3 d-inline-block">
                   <input
                     className="form-check-input"
@@ -244,11 +246,19 @@ const AddMovie = () => {
                   <label
                     className="form-check-label"
                     htmlFor="flexSwitchCheckDefault"
-                  >
-                  </label>
+                  ></label>
                 </div>
               </div>
-              <div className="pb-5">
+              <div className="pb-4">
+                <div className="d-inline-block w-15 text-end">Đánh Giá : </div>
+                <input
+                  className="ms-1 inputAddMovie w-75"
+                  type="text"
+                  placeholder="Đánh giá phim"
+                  {...register("danhGia")}
+                />
+              </div>
+              <div className="pb-4">
                 {/* <input cl5ssName="inputAddMovie w-75" type="file" placeholder="Hình Ảnh" {...register("hinhAnh")} /> */}
                 <div className="d-inline-block w-15 text-end">Hình Ảnh : </div>
                 <input
@@ -257,8 +267,9 @@ const AddMovie = () => {
                   placeholder="Hình Ảnh"
                   onChange={handleChangeImage}
                 />
+                {imgPreview && <img src={imgPreview} alt="preview" style={{width:'200px', height:'260px'}} />}
               </div>
-              {imgPreview && <img src={imgPreview} alt="preview" />}
+              
 
               <button className="btn btn-info ms-5">Thêm Phim</button>
             </form>
