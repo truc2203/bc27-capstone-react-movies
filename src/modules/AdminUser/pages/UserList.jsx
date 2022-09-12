@@ -2,7 +2,6 @@ import useRequest from "hooks/useRequest";
 import movieAPI from "apis/movieAPI";
 import { VideoCameraOutlined, UserOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";
-import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
@@ -22,35 +21,31 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem(<NavLink to="./users">Quản Lý Người Dùng</NavLink>
+  getItem(<NavLink to="./">Quản Lý Người Dùng</NavLink>
   , "sub1", <UserOutlined />),
-  getItem(<NavLink to="./">Quản Lý Phim</NavLink>, "sub2", <VideoCameraOutlined />),
+  getItem(<NavLink to="../">Quản Lý Phim</NavLink>, "sub2", <VideoCameraOutlined />),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 
-const AdminLayout = () => {
+const UserList = () => {
   const {
     data: movies,
     isLoading,
     error,
   } = useRequest(() => movieAPI.getMovies());
   const navigate = useNavigate();
-  const dispatch = useDispatch()
   const movePath = (path) => {
     navigate(path);
   };
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const handleMovie = (movie,path) => {
-    dispatch({type:'getMovieInfo',movie})
-    movePath(`${path}/${movie.maPhim}`);
+  const handleEditMovie = (movie) => {
+    movePath(`movies/edit/${movie.maPhim}`);
   };
 
   const handleDeleteMovie = (movieId, auth) => {
     movieAPI.deleteMovie(movieId, auth);
   };
-
-
   const [collapsed, setCollapsed] = useState(false);
   if (!user || user.maLoaiNguoiDung !== "QuanTri") {
     return navigate("../../");
@@ -91,18 +86,18 @@ const AdminLayout = () => {
               margin: "16px 0",
             }}
           >
-            <h4 className="text-dark mb-3">Quản Lý Phim</h4>
+            <h4 className="text-dark mb-3">Quản Lý Người Dùng</h4>
             <button
-              onClick={() => movePath("movies/add")}
+              onClick={() => movePath("./add")}
               className="btn-style mb-3"
               style={{ width: "160px" }}
             >
-              Thêm Phim
+              Thêm User
             </button>
             <form>
               <div className="mb-3">
                 <input
-                  placeholder="Nhập mã phim"
+                  placeholder="Nhập tên người dùng"
                   style={{ display: "inline-block", width: "80%" }}
                   type="email"
                   className="form-control"
@@ -126,59 +121,9 @@ const AdminLayout = () => {
               minHeight: 360,
             }}
           >
-            <table className="table">
-              <thead>
-                <tr>
-                  <th scope="col">Mã Phim</th>
-                  <th scope="col">Hình Ảnh</th>
-                  <th scope="col">Tên Phim</th>
-                  <th scope="col">Mô Tả</th>
-                  <th scope="col">Hành động</th>
-                </tr>
-              </thead>
+            
+            {/* Content */}
 
-              {movies?.map((movie) => {
-                return (
-                  <tbody key={movie.maPhim}>
-                    <tr>
-                      <td>{movie.maPhim}</td>
-                      <td>
-                        <img
-                          className="rounded-1"
-                          src={movie.hinhAnh}
-                          alt=""
-                          style={{ width: "60px", height: "60px" }}
-                        />
-                      </td>
-                      <td>{movie.tenPhim}</td>
-                      <td className="w-50">{movie.moTa}</td>
-                      <td>
-                        <button
-                          onClick={() => handleMovie(movie,'movies/edit')}
-                          className="fs-5"
-                        >
-                          <AiOutlineEdit />
-                        </button>
-                        <button
-                          onClick={() =>
-                            handleDeleteMovie(movie.maPhim, user.accessToken)
-                          }
-                          className="px-2 fs-5"
-                        >
-                          <AiOutlineDelete />
-                        </button>
-                        <button
-                          onClick={() => handleMovie(movie,'movies/showtime')}
-                          className="fs-5"
-                        >
-                          <AiOutlineCalendar />
-                        </button>
-                      </td>
-                    </tr>
-                  </tbody>
-                );
-              })}
-            </table>
           </div>
         </Content>
         <Footer
@@ -191,4 +136,4 @@ const AdminLayout = () => {
   );
 };
 
-export default AdminLayout;
+export default UserList;

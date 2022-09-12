@@ -2,6 +2,8 @@ import movieAPI from "apis/movieAPI";
 import useRequest from "hooks/useRequest";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { Breadcrumb, Layout, Menu } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
@@ -25,12 +27,14 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem("Người dùng", "sub1", <UserOutlined />, [getItem("Tom", "3")]),
-  getItem("Quản Lý Phim", "sub2", <VideoCameraOutlined />),
+  getItem(<NavLink to="/admin/users">Quản Lý Người Dùng</NavLink>
+  , "sub1", <UserOutlined />),
+  getItem(<NavLink to="../">Quản Lý Phim</NavLink>, "sub2", <VideoCameraOutlined />),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const AddShowTime = () => {
   const [imgPreview, setImgPreview] = useState("");
+  const {movieInfo} = useSelector((state) => state.movie)
   const [collapsed, setCollapsed] = useState(false);
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
@@ -132,12 +136,16 @@ const AddShowTime = () => {
               minHeight: 360,
             }}
           >
+            <div>
+              <img className="rounded-2 mb-4" src={movieInfo.hinhAnh} alt="" style={{width:'200px',height:'260px'}} />
+            </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="pb-5">
                 <div className="d-inline-block w-15 text-end">
                   Hệ Thống Rạp :{" "}
                 </div>
                 <input
+                  
                   className="ms-1 inputAddMovie w-75"
                   type="text"
                   placeholder="Tên Phim"
