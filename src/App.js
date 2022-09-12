@@ -49,7 +49,7 @@ function App() {
           <Route index element={<AdminLayout />} />
           <Route path="movies/edit/:movieId" element={<EditMovie />} />
           <Route path="movies/add" element={<AddMovie />} />
-          <Route path="movies/showtime" element={<AddShowTime />} />
+          <Route path="movies/showtime/:movieId" element={<AddShowTime />} />
           {/* AdminUser, AdminShowtimes */}
         </Route>
         <Route

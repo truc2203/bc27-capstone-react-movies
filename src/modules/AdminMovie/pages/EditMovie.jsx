@@ -2,6 +2,8 @@ import movieAPI from "apis/movieAPI";
 import useRequest from "hooks/useRequest";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import { Breadcrumb, Layout, Menu } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { notification } from "antd";
@@ -25,25 +27,27 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem("Người dùng", "sub1", <UserOutlined />, [getItem("Tom", "3")]),
-  getItem("Quản Lý Phim", "sub2", <VideoCameraOutlined />),
+  getItem(<NavLink to="/admin/users">Quản Lý Người Dùng</NavLink>
+  , "sub1", <UserOutlined />),
+  getItem(<NavLink to="../">Quản Lý Phim</NavLink>, "sub2", <VideoCameraOutlined />),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const EditMovie = () => {
   const movieId = useParams()
+  const {movieInfo} = useSelector((state) => state.movie)
   const [collapsed, setCollapsed] = useState(false);
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
       maPhim:movieId,
-      tenPhim: "",
-      moTa: "",
-      trailer: "",
-      hinhAnh: "",
-      danhGia: "",
-      ngayKhoiChieu: "",
-      dangChieu: true,
-      sapChieu: true,
-      hot: true,
+      tenPhim: movieInfo.tenPhim,
+      moTa: movieInfo.moTa,
+      trailer: movieInfo.trailer,
+      hinhAnh: movieInfo.hinhAnh,
+      danhGia: movieInfo.danhGia,
+      ngayKhoiChieu: movieInfo.ngayKhoiChieu,
+      dangChieu: movieInfo.dangChieu,
+      sapChieu: movieInfo.sapChieu,
+      hot: movieInfo.hot,
     },
     mode: "onTouched",
   });
@@ -69,6 +73,7 @@ const EditMovie = () => {
       notification.success({
         message: "Cập nhật thành công",
       });
+      movePath('../')
     } catch (error) {
       notification.warning({
         message: "Cập nhật thất bại",
@@ -276,7 +281,7 @@ const EditMovie = () => {
               </div>
               
 
-              <button className="btn btn-info ms-5">Thêm Phim</button>
+              <button className="btn btn-info ms-5">Cập Nhật</button>
             </form>
           </div>
         </Content>

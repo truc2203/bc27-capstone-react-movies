@@ -2,7 +2,9 @@ import useRequest from "hooks/useRequest";
 import movieAPI from "apis/movieAPI";
 import { VideoCameraOutlined, UserOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";
+import { useDispatch } from "react-redux";
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import {
   AiOutlineEdit,
   AiOutlineDelete,
@@ -20,8 +22,9 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem("Người dùng", "sub1", <UserOutlined />, [getItem("Tom", "3")]),
-  getItem("Quản Lý Phim", "sub2", <VideoCameraOutlined />),
+  getItem(<NavLink to="./users">Quản Lý Người Dùng</NavLink>
+  , "sub1", <UserOutlined />),
+  getItem(<NavLink to="./">Quản Lý Phim</NavLink>, "sub2", <VideoCameraOutlined />),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 
@@ -32,18 +35,22 @@ const AdminLayout = () => {
     error,
   } = useRequest(() => movieAPI.getMovies());
   const navigate = useNavigate();
+  const dispatch = useDispatch()
   const movePath = (path) => {
     navigate(path);
   };
   const user = JSON.parse(localStorage.getItem("user"));
 
-  const handleEditMovie = (movie) => {
-    movePath(`movies/edit/${movie.maPhim}`);
+  const handleMovie = (movie,path) => {
+    dispatch({type:'getMovieInfo',movie})
+    movePath(`${path}/${movie.maPhim}`);
   };
 
   const handleDeleteMovie = (movieId, auth) => {
     movieAPI.deleteMovie(movieId, auth);
   };
+
+
   const [collapsed, setCollapsed] = useState(false);
   if (!user || user.maLoaiNguoiDung !== "QuanTri") {
     return navigate("../../");
@@ -147,7 +154,7 @@ const AdminLayout = () => {
                       <td className="w-50">{movie.moTa}</td>
                       <td>
                         <button
-                          onClick={() => handleEditMovie(movie)}
+                          onClick={() => handleMovie(movie,'movies/edit')}
                           className="fs-5"
                         >
                           <AiOutlineEdit />
@@ -161,7 +168,7 @@ const AdminLayout = () => {
                           <AiOutlineDelete />
                         </button>
                         <button
-                          onClick={() => movePath("movies/showtime")}
+                          onClick={() => handleMovie(movie,'movies/showtime')}
                           className="fs-5"
                         >
                           <AiOutlineCalendar />

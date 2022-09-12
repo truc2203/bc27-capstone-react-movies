@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { Breadcrumb, Layout, Menu, notification } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import DatePicker from "react-datepicker";
+import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import {
   FileOutlined,
@@ -21,7 +22,9 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("Quản Lý Người dùng", "sub2", <UserOutlined />),
+  getItem(<NavLink to="/admin/users">Quản Lý Người Dùng</NavLink>
+  , "sub1", <UserOutlined />),
+  getItem(<NavLink to="../">Quản Lý Phim</NavLink>, "sub2", <VideoCameraOutlined />),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const AddUser = () => {
@@ -51,6 +54,9 @@ const AddUser = () => {
   const onSubmit = async (values) => {
     try {
       await handleAddUser(values);
+      notification.success({
+        message: "Đăng kí thanh công",
+      });
       // Thành công: gọi notification
       // Redirect về trang MovieList
       navigate("/admin/users");
@@ -70,7 +76,7 @@ const AddUser = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider>
-        <div className="logo" />
+        <div className="admin-logo" />
         <Menu
           theme="dark"
           defaultSelectedKeys={["1"]}

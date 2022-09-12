@@ -2,6 +2,7 @@ import movieAPI from "apis/movieAPI";
 import useRequest from "hooks/useRequest";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
 import { Breadcrumb, Layout, Menu } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import DatePicker from "react-datepicker";
@@ -12,6 +13,7 @@ import {
   VideoCameraOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import dayjs from "dayjs";
 const { Header, Content, Footer, Sider } = Layout;
 
 // Data thêm phim: tenPhim, biDanh, moTa, trailer, hinhAnh, ngayKhoiChieu, maNhom
@@ -25,8 +27,9 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem("Người dùng", "sub1", <UserOutlined />, [getItem("Tom", "3")]),
-  getItem("Quản Lý Phim", "sub2", <VideoCameraOutlined />),
+  getItem(<NavLink to="/admin/users">Quản Lý Người Dùng</NavLink>
+  , "sub1", <UserOutlined />),
+  getItem(<NavLink to="../">Quản Lý Phim</NavLink>, "sub2", <VideoCameraOutlined />),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const AddMovie = () => {
@@ -72,10 +75,7 @@ const AddMovie = () => {
     }
   };
 
-  const handleDate = (date) => {
-    setStartDate(date);
-    // setValue("ngayKhoiChieu", date);
-  };
+
 
   const handleChangeImage = (evt) => {
     // Đối với input type là file, có sẽ không dùng event.target.value mà thay thể bằng event.target.files
@@ -146,7 +146,9 @@ const AddMovie = () => {
               minHeight: 360,
             }}
           >
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit((data) => {
+              console.log(data);
+            })}>
               <div className="pb-5">
                 <div className="d-inline-block w-15 text-end">Tên Phim : </div>
                 <input
@@ -193,8 +195,9 @@ const AddMovie = () => {
                     <DatePicker
                       className="ms-1 inputAddMovie w-75 "
                       selected={startDate}
-                      onSelect={(value) => handleDate(value)}
+                      onSelect={(value) => setStartDate(value)}
                       dateFormat="dd/MM/yyyy"
+                      {...register("ngayKhoiChieu")}
                     />
                   </span>
                 </span>
