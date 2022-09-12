@@ -18,6 +18,7 @@ import Booking from "modules/Booking/Page/Booking";
 import AdminLayout from "modules/AdminMovie/AdminLayout";
 import EditMovie from "modules/AdminMovie/pages/EditMovie";
 import AddShowTime from "modules/AdminMovie/pages/AddShowTime";
+import EditUser from "modules/AdminUser/pages/EditUser";
 // Để chỉ cần tải những pages cần thiết ta sử dụng kĩ thuật lazyload
 const Home = lazy(() => import("modules/Home/pages/Home"));
 const Movie = lazy(() => import("modules/Movie/pages/Movie"));
@@ -28,7 +29,7 @@ const MovieList = lazy(() => import("modules/AdminMovie/pages/EditMovie"));
 const AddMovie = lazy(() => import("modules/AdminMovie/pages/AddMovie"));
 
 const AddUser = lazy(() => import("modules/AdminUser/pages/AddUser"));
-const UserList = lazy(() => import("modules/AdminUser/pages/UserList"));
+const UserLayout = lazy(() => import("modules/AdminUser/UserLayout"));
 
 function App() {
   return (
@@ -62,8 +63,9 @@ function App() {
             // </div>
           }
         >
-          <Route path="users" element={<UserList />} />
+          <Route path="users" element={<UserLayout />} />
           <Route path="users/add" element={<AddUser />} />
+          <Route path="users/edit/:userId" element={<EditUser />} />
         </Route>
 
         {/* Để các routes có cùng chung 1 layout, ta sử dụng kĩ thuật nested route, route parent đi định nghĩa layout component, bên trong route parent sẽ gọi tới cái children routes */}

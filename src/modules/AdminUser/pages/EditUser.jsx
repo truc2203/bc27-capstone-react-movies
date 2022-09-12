@@ -1,16 +1,17 @@
-import useRequest from "hooks/useRequest";
-import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { Breadcrumb, Layout, Menu, notification } from "antd";
+import { Breadcrumb, Layout, Menu } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { notification } from "antd";
 import DatePicker from "react-datepicker";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import userAPI from "apis/userAPI";
 import {
   FileOutlined,
   VideoCameraOutlined,
   UserOutlined,
 } from "@ant-design/icons";
-import userAPI from "apis/userAPI";
+import useRequest from "hooks/useRequest";
 const { Header, Content, Footer, Sider } = Layout;
 function getItem(label, key, icon, children) {
   return {
@@ -21,11 +22,11 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("Quản Lý Người dùng", "sub2", <UserOutlined />),
+  getItem("Người dùng", "sub1", <UserOutlined />, [getItem("Tom", "3")]),
+  getItem("Quản Lý Phim", "sub2", <VideoCameraOutlined />),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
-const AddUser = () => {
-  // const [collapsed, setCollapsed] = useState(false);
+const EditUser = () => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       taiKhoan: "",
@@ -41,31 +42,26 @@ const AddUser = () => {
   const movePath = (path) => {
     navigate(path);
   };
-  const { data: handleAddUser, isLoading } = useRequest(
-    (values) => userAPI.addUser(values),
+  const { data: handleEditUser, isLoading } = useRequest(
+    (values, user) => userAPI.updateUser(values, user.accessToken),
     { isManual: true }
   );
-  const onSubmit = async (values) => {
+  const onSubmit = async (values, user) => {
     try {
-      await handleAddUser(values);
-      notification.success({
-        message: "Thêm user thành công",
-      });
+      user = JSON.parse(localStorage.getItem("user"));
+
+      await handleEditUser(values, user);
       // Thành công: gọi notification
       // Redirect về trang MovieList
-      // navigate("/admin/users");
+      notification.success({
+        message: "Cập nhật thành công",
+      });
     } catch (error) {
       notification.warning({
-        message: "thêm user thất bại",
-        description: error,
+        message: "Cập nhật thất bại",
       });
+      // Thất bại: gọi notification hiển thị error
     }
-    // Thất bại: gọi notification hiển thị error
-
-    console.log(values);
-  };
-  const onError = (error) => {
-    console.log(error);
   };
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -103,7 +99,7 @@ const AddUser = () => {
               minHeight: 360,
             }}
           >
-            <form onSubmit={handleSubmit(onSubmit, onError)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <h1>Add User</h1>
               <div className="pb-5">
                 <input
@@ -191,7 +187,7 @@ const AddUser = () => {
                   })}
                 />
               </div>
-              <button className="btn btn-success">Thêm user</button>
+              <button className="btn btn-success">Cập nhật</button>
             </form>
           </div>
         </Content>
@@ -201,4 +197,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default EditUser;

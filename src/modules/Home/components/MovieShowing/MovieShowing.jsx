@@ -17,7 +17,6 @@ const MovieShowing = () => {
     navigate(`/movie/${movieId}`);
   };
 
-
   const settings = {
     dots: true,
     infinite: true,
@@ -38,19 +37,28 @@ const MovieShowing = () => {
     //   })}
     // </ul>
     <div className="m-container py-5">
-        <Slider {...settings}>
+      <Slider {...settings}>
         {movies?.map((movie) => {
-        return (
-          <div key={movie.maPhim}>
-            <img className="rounded-2 movieShow " src={movie.hinhAnh} alt="" />
-            <div className="text-start">
-            <button className="btn-style mt-3 w-75" onClick={() => goToMovie(movie.maPhim)}>Mua vé</button>
+          return (
+            <div key={movie.maPhim}>
+              <img
+                className="rounded-2 movieShow "
+                src={movie.hinhAnh}
+                alt=""
+              />
+              <div className="text-start">
+                <button
+                  className="btn-style mt-3 w-75"
+                  onClick={() => goToMovie(movie.maPhim)}
+                >
+                  Mua vé
+                </button>
+              </div>
             </div>
-          </div>
-        );
-      })}
-        </Slider>
-      </div>
+          );
+        })}
+      </Slider>
+    </div>
   );
 };
 

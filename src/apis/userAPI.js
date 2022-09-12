@@ -1,11 +1,14 @@
 import axiosClient from "./axiosClient";
 const userAPI = {
-  addUser: (user, auth) => {
-    return axiosClient.post("QuanLyNguoiDung/ThemNguoiDung", user, {
-      headers: {
-        Authorization: `Bearer ${auth}`,
+  getUsers: () => {
+    return axiosClient.get("QuanLyNguoiDung/LayDanhSachNguoiDung", {
+      params: {
+        maNhom: "GP01",
       },
     });
+  },
+  addUser: (user, auth) => {
+    return axiosClient.post("QuanLyNguoiDung/ThemNguoiDung", user);
   },
   deleteUser: (userId, auth) => {
     return axiosClient.delete("QuanLyNguoiDung/XoaNguoiDung", {
@@ -18,7 +21,7 @@ const userAPI = {
     });
   },
   updateUser: (userId, auth) => {
-    return axiosClient.put("QuanLyNguoiDung/CapNhatThongTinNguoiDung", {
+    return axiosClient.post("QuanLyNguoiDung/CapNhatThongTinNguoiDung", {
       headers: {
         Authorization: `Bearer ${auth}`,
       },
