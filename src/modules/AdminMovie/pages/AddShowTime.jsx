@@ -7,6 +7,7 @@ import { NavLink } from "react-router-dom";
 import { Breadcrumb, Layout, Menu } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 import DatePicker from "react-datepicker";
 
 import { VideoCameraOutlined, UserOutlined } from "@ant-design/icons";
@@ -70,6 +71,7 @@ const AddShowTime = () => {
       // Thất bại: gọi notification hiển thị error
     }
   };
+
   return (
     <Layout
       style={{
@@ -139,25 +141,15 @@ const AddShowTime = () => {
                   placeholder="Hệ Thống Rạp"
                   value={ttName}
                   onChange={(e) => {
-                    const select = e.target.value
-                    setTheaterName(select)
-                    console.log(ttName);
+                    setTheaterName(e.target.value);
                   }}
                 >
-                  {theaters?.map((theater) => {
-                    return (
-                      <option
-                        key={theater.maHeThongRap}
-                        {...register("heThongRap")}
-                        value={theater.maHeThongRap}
-                      >
-                        {theater.tenHeThongRap}
-                      </option>
-                    );
-                  })}
-                  {/* <option value="test">Test</option>
-                  <option value="test2">Test2</option>
-                  <option value="test3">Test3</option> */}
+                  {theaters?.map((theater) => (
+                    <option key={theater.maHeThongRap} value={theater.maHeThongRap}>
+                      {theater.tenHeThongRap}
+                    </option>
+                  ))}
+                  
                 </select>
               </div>
 
