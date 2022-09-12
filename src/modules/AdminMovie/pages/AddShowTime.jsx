@@ -9,11 +9,7 @@ import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
 
-import {
-  FileOutlined,
-  VideoCameraOutlined,
-  UserOutlined,
-} from "@ant-design/icons";
+import { VideoCameraOutlined, UserOutlined } from "@ant-design/icons";
 const { Header, Content, Footer, Sider } = Layout;
 
 // Data thêm phim: tenPhim, biDanh, moTa, trailer, hinhAnh, ngayKhoiChieu, maNhom
@@ -27,23 +23,28 @@ function getItem(label, key, icon, children) {
 }
 
 const items = [
-  getItem(<NavLink to="/admin/users">Quản Lý Người Dùng</NavLink>
-  , "sub1", <UserOutlined />),
-  getItem(<NavLink to="../">Quản Lý Phim</NavLink>, "sub2", <VideoCameraOutlined />),
+  getItem(
+    <NavLink to="/admin/users">Quản Lý Người Dùng</NavLink>,
+    "sub1",
+    <UserOutlined />
+  ),
+  getItem(
+    <NavLink to="../">Quản Lý Phim</NavLink>,
+    "sub2",
+    <VideoCameraOutlined />
+  ),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const AddShowTime = () => {
-  const [imgPreview, setImgPreview] = useState("");
-  const {movieInfo} = useSelector((state) => state.movie)
+  const { movieInfo } = useSelector((state) => state.movie);
   const [collapsed, setCollapsed] = useState(false);
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
-      tenPhim: "",
-      biDanh: "",
+      heThongRap: "",
+      cumRap: "",
       moTa: "",
-      trailer: "",
-      hinhAnh: "",
       ngayKhoiChieu: "",
+      giaVe: "",
     },
     mode: "onTouched",
   });
@@ -52,11 +53,14 @@ const AddShowTime = () => {
     navigate(path);
   };
   const [startDate, setStartDate] = useState(new Date());
-  const { data: handleAddMovie, isLoading } = useRequest(
+  const { data: handleAddMovie } = useRequest(
     (values) => movieAPI.addMovie(values),
     { isManual: true }
   );
 
+  const [ttName, setTheaterName] = useState("");
+  const { data: theaters } = useRequest(() => movieAPI.getCinema());
+  const { data: theatersName } = useRequest(() => movieAPI.getCinemas(ttName));
   const onSubmit = async (values) => {
     try {
       await handleAddMovie(values);
@@ -66,26 +70,6 @@ const AddShowTime = () => {
       // Thất bại: gọi notification hiển thị error
     }
   };
-
-  const handleChangeImage = (evt) => {
-    // Đối với input type là file, có sẽ không dùng event.target.value mà thay thể bằng event.target.files
-    const file = evt.target.files[0];
-
-    if (!file) return;
-
-    // Lưu file vào field hinhAnh của hook form
-    setValue("hinhAnh", file);
-
-    // Xử lý hiển thị hình ảnh ra giao diện
-    const fileReader = new FileReader();
-    fileReader.readAsDataURL(file); // bất đồng bộ
-    fileReader.onload = (evt) => {
-      // Đọc file thành công
-      // evt.target.result: string base64
-      setImgPreview(evt.target.result);
-    };
-  };
-
   return (
     <Layout
       style={{
@@ -137,37 +121,61 @@ const AddShowTime = () => {
             }}
           >
             <div>
-              <img className="rounded-2 mb-4" src={movieInfo.hinhAnh} alt="" style={{width:'200px',height:'260px'}} />
+              <img
+                className="rounded-2 mb-4"
+                src={movieInfo?.hinhAnh}
+                alt=""
+                style={{ width: "200px", height: "260px" }}
+              />
             </div>
             <form onSubmit={handleSubmit(onSubmit)}>
               <div className="pb-5">
                 <div className="d-inline-block w-15 text-end">
                   Hệ Thống Rạp :{" "}
                 </div>
-                <input
-                  
+                <select
                   className="ms-1 inputAddMovie w-75"
                   type="text"
-                  placeholder="Tên Phim"
-                  {...register("tenPhim")}
-                />
+                  placeholder="Hệ Thống Rạp"
+                  value={ttName}
+                  onChange={(e) => {
+                    const select = e.target.value
+                    setTheaterName(select)
+                    console.log(ttName);
+                  }}
+                >
+                  {theaters?.map((theater) => {
+                    return (
+                      <option
+                        key={theater.maHeThongRap}
+                        {...register("heThongRap")}
+                        value={theater.maHeThongRap}
+                      >
+                        {theater.tenHeThongRap}
+                      </option>
+                    );
+                  })}
+                  {/* <option value="test">Test</option>
+                  <option value="test2">Test2</option>
+                  <option value="test3">Test3</option> */}
+                </select>
               </div>
-              {/* <div className="pb-5">
-                <div className="d-inline-block w-15 text-end">Bí Danh : </div>
-                <input className="ms-1 inputAddMovie w-75"
-                  type="text"
-                  placeholder="Bí Danh"
-                  {...register("biDanh")}
-                />
-              </div> */}
+
               <div className="pb-5">
                 <div className="d-inline-block w-15 text-end">Cụm Rạp : </div>
-                <input
+                <select
                   className="ms-1 inputAddMovie w-75"
                   type="text"
-                  placeholder="Trailer"
-                  {...register("trailer")}
-                />
+                  placeholder="Tên cụm rạp"
+                >
+                  {theatersName?.map((name) => {
+                    return (
+                      <option key={name.maCumRap} {...register("cumRap")}>
+                        {name.tenCumRap}
+                      </option>
+                    );
+                  })}
+                </select>
               </div>
               <div className="pb-5">
                 <div className="d-inline-block w-15 text-end">

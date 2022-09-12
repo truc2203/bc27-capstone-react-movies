@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import useRequest from "hooks/useRequest";
 import userAPI from "apis/userAPI";
+import { NavLink } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { VideoCameraOutlined, UserOutlined } from "@ant-design/icons";
 import { Breadcrumb, Layout, Menu } from "antd";
 import {
@@ -20,8 +22,9 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("Người dùng", "sub1", <UserOutlined />, [getItem("Tom", "3")]),
-  getItem("Quản Lý Phim", "sub2", <VideoCameraOutlined />),
+  getItem(<NavLink to="/admin/users">Quản Lý Người Dùng</NavLink>
+  , "sub1", <UserOutlined />),
+  getItem(<NavLink to="../">Quản Lý Phim</NavLink>, "sub2", <VideoCameraOutlined />),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const UserLayout = () => {
@@ -35,6 +38,7 @@ const UserLayout = () => {
     navigate(path);
   };
   const user = JSON.parse(localStorage.getItem("user"));
+  const dispatch = useDispatch()
   const [collapsed, setCollapsed] = useState(false);
   if (!user || user.maLoaiNguoiDung !== "QuanTri") {
     return navigate("../../");
@@ -44,6 +48,7 @@ const UserLayout = () => {
   };
   const handleEditUser = (userr) => {
     movePath(`edit/${userr.taiKhoan}`);
+    dispatch({type:'userInfo',userr})
   };
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -53,7 +58,7 @@ const UserLayout = () => {
         onCollapse={(value) => setCollapsed(value)}
       >
         <div className="admin-logo" />
-        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline" />
+        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline" items={items} />
       </Sider>
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }} />
@@ -95,21 +100,22 @@ const UserLayout = () => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">STT</th>
                   <th scope="col">Tài Khoản</th>
+                  <th scope="col">Loại người dùng</th>
                   <th scope="col">Mật khẩu</th>
                   <th scope="col">Họ Tên</th>
                   <th scope="col">Email</th>
                   <th scope="col">Số Điện Thoại</th>
                   <th scope="col">Hành động</th>
+
                 </tr>
               </thead>
               {users?.map((userr) => {
                 return (
                   <tbody key={userr.taiKhoan}>
                     <tr>
-                      <td></td>
                       <td>{userr.taiKhoan}</td>
+                      <td style={{color : userr.maLoaiNguoiDung === 'QuanTri' ? 'red' : 'blue'}}>{userr.maLoaiNguoiDung}</td>
                       <td>{userr.matKhau}</td>
                       <td>{userr.hoTen}</td>
                       <td>{userr.email}</td>

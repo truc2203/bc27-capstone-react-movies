@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Breadcrumb, Layout, Menu } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
+import { useSelector } from "react-redux";
 import { notification } from "antd";
 import DatePicker from "react-datepicker";
 import { useNavigate, useParams } from "react-router-dom";
@@ -27,14 +28,15 @@ const items = [
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const EditUser = () => {
+  const {userInfo} = useSelector((state) => state.user)
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      taiKhoan: "",
-      matKhau: "",
-      email: "",
-      soDt: "",
-      maLoaiNguoiDung: "",
-      hoTen: "",
+      taiKhoan: userInfo.taiKhoan,
+      matKhau: userInfo.matKhau,
+      email: userInfo.email,
+      soDt: userInfo.soDT,
+      maLoaiNguoiDung: userInfo.maLoaiNguoiDung,
+      hoTen: userInfo.hoTen,
     },
     mode: "onTouched",
   });
@@ -66,7 +68,7 @@ const EditUser = () => {
   return (
     <Layout style={{ minHeight: "100vh" }}>
       <Sider>
-        <div className="logo" />
+        <div className="admin-logo" />
         <Menu
           theme="dark"
           defaultSelectedKeys={["1"]}
@@ -83,7 +85,7 @@ const EditUser = () => {
             }}
           >
             <div className="d-flex justify-content-between">
-              <h5 className="text-dark mb-3">Thêm người dùng mới</h5>
+              <h5 className="text-dark mb-3">Cập nhật thông tin</h5>
               <button
                 onClick={() => movePath("../users")}
                 className="btn-style"

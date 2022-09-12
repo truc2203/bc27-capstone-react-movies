@@ -24,7 +24,14 @@ const movieAPI = {
   getCinema: () => {
     return axiosClient.get("QuanLyRap/LayThongTinHeThongRap");
   },
+  getCinemas: (theaterName) => {
+    return axiosClient.get("QuanLyRap/LayThongTinCumRapTheoHeThong",{
+      params:{
+        maHeThongRap:theaterName
+      }
+    });
 
+  },
   showCinemasList: () => {
     return axiosClient.get("QuanLyRap/LayThongTinLichChieuHeThongRap", {
       params: {
