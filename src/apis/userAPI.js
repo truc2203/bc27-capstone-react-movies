@@ -30,5 +30,13 @@ const userAPI = {
       },
     });
   },
+  findUser: (userId) => {
+    return axiosClient.get("QuanLyNguoiDung/TimKiemNguoiDung", {
+      params: {
+        maNhom: "GP01",
+        taiKhoan: userId,
+      },
+    });
+  },
 };
 export default userAPI;

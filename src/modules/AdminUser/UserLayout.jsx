@@ -9,7 +9,6 @@ import {
   AiOutlineEdit,
   AiOutlineDelete,
   AiOutlineCalendar,
-  AiOutlinePerson,
 } from "react-icons/ai";
 import { Outlet, useNavigate } from "react-router-dom";
 const { Header, Content, Footer, Sider } = Layout;
@@ -22,9 +21,16 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem(<NavLink to="/admin/users">Quản Lý Người Dùng</NavLink>
-  , "sub1", <UserOutlined />),
-  getItem(<NavLink to="../">Quản Lý Phim</NavLink>, "sub2", <VideoCameraOutlined />),
+  getItem(
+    <NavLink to="/admin/users">Quản Lý Người Dùng</NavLink>,
+    "sub1",
+    <UserOutlined />
+  ),
+  getItem(
+    <NavLink to="../">Quản Lý Phim</NavLink>,
+    "sub2",
+    <VideoCameraOutlined />
+  ),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const UserLayout = () => {
@@ -38,7 +44,7 @@ const UserLayout = () => {
     navigate(path);
   };
   const user = JSON.parse(localStorage.getItem("user"));
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [collapsed, setCollapsed] = useState(false);
   if (!user || user.maLoaiNguoiDung !== "QuanTri") {
     return navigate("../../");
@@ -48,7 +54,10 @@ const UserLayout = () => {
   };
   const handleEditUser = (userr) => {
     movePath(`edit/${userr.taiKhoan}`);
-    dispatch({type:'userInfo',userr})
+    dispatch({ type: "userInfo", userr });
+  };
+  const handleFindUser = (userId) => {
+    userAPI.findUser(userId);
   };
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -58,7 +67,12 @@ const UserLayout = () => {
         onCollapse={(value) => setCollapsed(value)}
       >
         <div className="admin-logo" />
-        <Menu theme="dark" defaultSelectedKeys={["1"]} mode="inline" items={items} />
+        <Menu
+          theme="dark"
+          defaultSelectedKeys={["1"]}
+          mode="inline"
+          items={items}
+        />
       </Sider>
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }} />
@@ -81,6 +95,7 @@ const UserLayout = () => {
                   className="form-control"
                 />
                 <button
+                  onClick={(userId) => handleFindUser(userId.taiKhoan)}
                   type="submit"
                   className="btn-style"
                   style={{ padding: "7px 14px" }}
@@ -107,7 +122,6 @@ const UserLayout = () => {
                   <th scope="col">Email</th>
                   <th scope="col">Số Điện Thoại</th>
                   <th scope="col">Hành động</th>
-
                 </tr>
               </thead>
               {users?.map((userr) => {
@@ -115,7 +129,16 @@ const UserLayout = () => {
                   <tbody key={userr.taiKhoan}>
                     <tr>
                       <td>{userr.taiKhoan}</td>
-                      <td style={{color : userr.maLoaiNguoiDung === 'QuanTri' ? 'red' : 'blue'}}>{userr.maLoaiNguoiDung}</td>
+                      <td
+                        style={{
+                          color:
+                            userr.maLoaiNguoiDung === "QuanTri"
+                              ? "red"
+                              : "blue",
+                        }}
+                      >
+                        {userr.maLoaiNguoiDung}
+                      </td>
                       <td>{userr.matKhau}</td>
                       <td>{userr.hoTen}</td>
                       <td>{userr.email}</td>

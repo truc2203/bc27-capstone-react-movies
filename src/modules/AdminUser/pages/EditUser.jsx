@@ -28,7 +28,7 @@ const items = [
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const EditUser = () => {
-  const {userInfo} = useSelector((state) => state.user)
+  const { userInfo } = useSelector((state) => state.user);
   const { register, handleSubmit } = useForm({
     defaultValues: {
       taiKhoan: userInfo.taiKhoan,

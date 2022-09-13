@@ -1,5 +1,5 @@
 import useRequest from "hooks/useRequest";
-import React from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Breadcrumb, Layout, Menu, notification } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
@@ -22,13 +22,20 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem(<NavLink to="/admin/users">Quản Lý Người Dùng</NavLink>
-  , "sub1", <UserOutlined />),
-  getItem(<NavLink to="../">Quản Lý Phim</NavLink>, "sub2", <VideoCameraOutlined />),
+  getItem(
+    <NavLink to="/admin/users">Quản Lý Người Dùng</NavLink>,
+    "sub1",
+    <UserOutlined />
+  ),
+  getItem(
+    <NavLink to="../">Quản Lý Phim</NavLink>,
+    "sub2",
+    <VideoCameraOutlined />
+  ),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const AddUser = () => {
-  // const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(false);
   const { register, handleSubmit } = useForm({
     defaultValues: {
       taiKhoan: "",
@@ -60,7 +67,6 @@ const AddUser = () => {
     } catch (error) {
       notification.warning({
         message: "thêm user thất bại",
-        description: error,
       });
     }
     // Thất bại: gọi notification hiển thị error
@@ -72,7 +78,11 @@ const AddUser = () => {
   };
   return (
     <Layout style={{ minHeight: "100vh" }}>
-      <Sider>
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}
+      >
         <div className="admin-logo" />
         <Menu
           theme="dark"
@@ -106,8 +116,7 @@ const AddUser = () => {
               minHeight: 360,
             }}
           >
-            <form onSubmit={handleSubmit(onSubmit, onError)}>
-              <h1>Add User</h1>
+            <form onSubmit={(handleSubmit(onSubmit), onError)}>
               <div className="pb-5">
                 <input
                   className="form-control"
