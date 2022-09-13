@@ -44,11 +44,11 @@ const EditMovie = () => {
       trailer: movieInfo.trailer,
       hinhAnh: movieInfo.hinhAnh,
       danhGia: movieInfo.danhGia,
-      ngayKhoiChieu: movieInfo.ngayKhoiChieu,
+      ngayKhoiChieu: '',
       dangChieu: movieInfo.dangChieu,
       sapChieu: movieInfo.sapChieu,
       hot: movieInfo.hot,
-    },
+    }, 
     mode: "onTouched",
   });
   const navigate = useNavigate();

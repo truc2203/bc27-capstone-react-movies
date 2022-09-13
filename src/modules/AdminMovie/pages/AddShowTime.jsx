@@ -3,8 +3,8 @@ import useRequest from "hooks/useRequest";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { Breadcrumb, Layout, Menu } from "antd";
+import { NavLink, useParams } from "react-router-dom";
+import { Breadcrumb, Layout, Menu, notification } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
@@ -37,14 +37,14 @@ const items = [
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const AddShowTime = () => {
+  const {movieId} = useParams()
   const { movieInfo } = useSelector((state) => state.movie);
   const [collapsed, setCollapsed] = useState(false);
   const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
-      heThongRap: "",
-      cumRap: "",
-      moTa: "",
-      ngayKhoiChieu: "",
+      maPhim: movieId,
+      maRap: '',
+      ngayChieuGioChieu: "",
       giaVe: "",
     },
     mode: "onTouched",
@@ -54,21 +54,31 @@ const AddShowTime = () => {
     navigate(path);
   };
   const [startDate, setStartDate] = useState(new Date());
-  const { data: handleAddMovie } = useRequest(
-    (values) => movieAPI.addMovie(values),
+  const { data: handleAddShowtime } = useRequest(
+    (values) => movieAPI.addShowtime(values),
     { isManual: true }
   );
 
   const [ttName, setTheaterName] = useState("");
   const { data: theaters } = useRequest(() => movieAPI.getCinema());
-  const { data: theatersName } = useRequest(() => movieAPI.getCinemas(ttName));
+  const { data: theatersName } = useRequest(() => movieAPI.getCinemas(ttName),{deps:[ttName]});
+
+
+    
   const onSubmit = async (values) => {
     try {
-      await handleAddMovie(values);
+      await handleAddShowtime(values);
       // Thành công: gọi notification
       // Redirect về trang MovieList
+      notification.success({
+        message: "Tạo lịch chiếu thành công",
+      });
+      movePath('../')
     } catch (error) {
       // Thất bại: gọi notification hiển thị error
+      notification.warning({
+        message: "Tạo lịch chiếu thất bại",
+      });
     }
   };
 
@@ -139,6 +149,7 @@ const AddShowTime = () => {
                   className="ms-1 inputAddMovie w-75"
                   type="text"
                   placeholder="Hệ Thống Rạp"
+                  // {...register("heThongRap")}
                   value={ttName}
                   onChange={(e) => {
                     setTheaterName(e.target.value);
@@ -159,11 +170,12 @@ const AddShowTime = () => {
                   className="ms-1 inputAddMovie w-75"
                   type="text"
                   placeholder="Tên cụm rạp"
+                  {...register("maRap")}
                 >
                   {theatersName?.map((name) => {
                     return (
-                      <option key={name.maCumRap} {...register("cumRap")}>
-                        {name.tenCumRap}
+                      <option key={name.maCumRap} >
+                        {name.maCumRap}
                       </option>
                     );
                   })}
@@ -179,6 +191,7 @@ const AddShowTime = () => {
                     className="ms-1 inputAddMovie w-75 "
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}
+                    {...register("ngayChieuGioChieu")}
                   />
                 </span>
               </div>
@@ -187,7 +200,7 @@ const AddShowTime = () => {
                 <input
                   className="ms-1 inputAddMovie w-75"
                   type="text"
-                  {...register("ngayKhoiChieu")}
+                  {...register("giaVe")}
                 />
               </div>
 

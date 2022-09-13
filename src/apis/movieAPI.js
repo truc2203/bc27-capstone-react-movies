@@ -79,6 +79,10 @@ const movieAPI = {
       },
     });
   },
+  addShowtime: (showtime) => {
+
+    return axiosClient.post('QuanLyDatVe/TaoLichChieu',showtime)
+  }
 };
 
 export default movieAPI;

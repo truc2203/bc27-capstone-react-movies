@@ -146,9 +146,8 @@ const AddMovie = () => {
               minHeight: 360,
             }}
           >
-            <form onSubmit={handleSubmit((data) => {
-              console.log(data);
-            })}>
+            <form onSubmit={handleSubmit(onSubmit
+            )}>
               <div className="pb-5">
                 <div className="d-inline-block w-15 text-end">Tên Phim : </div>
                 <input

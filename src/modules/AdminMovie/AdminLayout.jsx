@@ -29,18 +29,18 @@ const items = [
 ];
 
 const AdminLayout = () => {
+  const [isDelete,setIsDelete] = useState(false)
   const {
     data: movies,
     isLoading,
     error,
-  } = useRequest(() => movieAPI.getMovies());
+  } = useRequest(() => movieAPI.getMovies({deps:[isDelete]}));
   const navigate = useNavigate();
   const dispatch = useDispatch()
   const movePath = (path) => {
     navigate(path);
   };
   const user = JSON.parse(localStorage.getItem("user"));
-
   const handleMovie = (movie,path) => {
     dispatch({type:'getMovieInfo',movie})
     movePath(`${path}/${movie.maPhim}`);
@@ -48,6 +48,7 @@ const AdminLayout = () => {
 
   const handleDeleteMovie = (movieId, auth) => {
     movieAPI.deleteMovie(movieId, auth);
+    setIsDelete(!isDelete)
   };
 
 

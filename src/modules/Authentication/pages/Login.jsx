@@ -74,7 +74,7 @@ const Login = () => {
       <h1>Login</h1>
       <Form className="form-login"
         onFinish={handleSubmit(onSubmit)}
-        labelCol={{ span: 2 }}
+        labelCol={{ span: 3 }}
         wrapperCol={{ span: 8 }}
       >
         <Controller
