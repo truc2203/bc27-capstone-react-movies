@@ -132,8 +132,9 @@ const UserLayout = () => {
                 return (
                   <tbody key={userr.taiKhoan}>
                     <tr>
-                      <td>{userr.taiKhoan}</td>
+                      <td data-label="Tài Khoản">{userr.taiKhoan}</td>
                       <td
+                        data-label="Loại người dùng"
                         style={{
                           color:
                             userr.maLoaiNguoiDung === "QuanTri"
@@ -143,11 +144,11 @@ const UserLayout = () => {
                       >
                         {userr.maLoaiNguoiDung}
                       </td>
-                      <td>{userr.matKhau}</td>
-                      <td>{userr.hoTen}</td>
-                      <td>{userr.email}</td>
-                      <td>{userr.soDT}</td>
-                      <td>
+                      <td data-label="Mật khẩu">{userr.matKhau}</td>
+                      <td data-label="Họ Tên">{userr.hoTen}</td>
+                      <td data-label="Email">{userr.email}</td>
+                      <td data-label="Số Điện Thoại">{userr.soDT}</td>
+                      <td data-label="Hành động">
                         <button
                           onClick={() =>
                             handleDeleteUser(userr.taiKhoan, user.accessToken)
