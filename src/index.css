@@ -208,9 +208,9 @@ h6 {
   width: 100%;
   padding: 100px 500px;
 }
-.form-login{
- background-color: white;
- padding: 10px 15px;
+.form-login {
+  background-color: white;
+  padding: 10px 15px;
 }
 
 /* Admin add movie */
@@ -220,11 +220,110 @@ h6 {
   padding: 2px;
 }
 
-.admin-logo{
+.admin-logo {
   background-image: url("./img/download.jpg");
   width: 100%;
   height: 80px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+/* responsive */
+@media (min-width: 577px) and (max-width: 768px) {
+  .table thead {
+    display: none;
+  }
+  .table,
+  .table body,
+  .table tr,
+  .table td {
+    display: block;
+    width: 490px;
+  }
+  .table tr {
+    margin-bottom: 15px;
+    border: 1px solid;
+    font-size: 15px;
+    margin-left: 0 !important;
+  }
+  .table tbody tr td {
+    text-align: right;
+    /* padding-left: 50%; */
+    position: relative;
+    border: 1px solid;
+  }
+  .table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: -10px;
+    width: 50%;
+    padding-left: 12px;
+    font-size: 15px;
+    text-align: left;
+    font-size: 15px;
+    /* margin-right: 10px */
+  }
+  .ant-layout {
+    background: none;
+  }
+  .ant-layout-content {
+    /* margin: 0px 80px; */
+  }
+  .table .w-50 {
+    width: 490px !important;
+  }
+  .site-layout-background {
+    padding: 0px !important;
+  }
+}
+@media (max-width: 576px) {
+  .table thead {
+    display: none;
+  }
+  .table,
+  .table body,
+  .table tr,
+  .table td {
+    display: block;
+    width: 320px;
+  }
+  .table tr {
+    margin-bottom: 15px;
+    border: 1px solid;
+    font-size: 15px;
+    margin-left: 0 !important;
+  }
+  .table tbody tr td {
+    text-align: right;
+    /* padding-left: 50%; */
+    position: relative;
+    border: 1px solid;
+  }
+  .table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: -10px;
+    width: 50%;
+    padding-left: 12px;
+    font-size: 15px;
+    text-align: left;
+    font-size: 15px;
+    /* margin-right: 10px */
+  }
+  .ant-layout {
+    background: none;
+  }
+  .ant-layout-content {
+    /* margin: 0px 80px; */
+  }
+  .table .w-50 {
+    width: 320px !important;
+  }
+  .site-layout-background {
+    padding: 0px !important;
+  }
+  .table {
+    margin-right: 10px !important;
+  }
 }

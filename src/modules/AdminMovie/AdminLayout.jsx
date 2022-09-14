@@ -142,8 +142,8 @@ const AdminLayout = () => {
                 return (
                   <tbody key={movie.maPhim}>
                     <tr>
-                      <td>{movie.maPhim}</td>
-                      <td>
+                      <td data-label="Mã Phim">{movie.maPhim}</td>
+                      <td data-label="Hình ảnh">
                         <img
                           className="rounded-1"
                           src={movie.hinhAnh}
@@ -151,9 +151,9 @@ const AdminLayout = () => {
                           style={{ width: "60px", height: "60px" }}
                         />
                       </td>
-                      <td>{movie.tenPhim}</td>
-                      <td className="w-50">{movie.moTa}</td>
-                      <td>
+                      <td data-label="Tên Phim">{movie.tenPhim}</td>
+                      <td data-label="Mô tả" className="w-50">{movie.moTa}</td>
+                      <td data-label="Hành động">
                         <button
                           onClick={() => handleMovie(movie,'movies/edit')}
                           className="fs-5"
