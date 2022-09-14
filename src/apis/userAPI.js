@@ -8,7 +8,9 @@ const userAPI = {
     });
   },
   addUser: (user, auth) => {
-    return axiosClient.post("QuanLyNguoiDung/ThemNguoiDung", user);
+    return axiosClient.post("QuanLyNguoiDung/ThemNguoiDung",user
+      
+    );
   },
   deleteUser: (userId, auth) => {
     return axiosClient.delete("QuanLyNguoiDung/XoaNguoiDung", {
@@ -16,25 +18,18 @@ const userAPI = {
         Authorization: `Bearer ${auth}`,
       },
       params: {
-        taiKhoan: userId,
+        TaiKhoan: userId,
       },
     });
   },
   updateUser: (userId, auth) => {
-    return axiosClient.post("QuanLyNguoiDung/CapNhatThongTinNguoiDung", {
-      headers: {
-        Authorization: `Bearer ${auth}`,
-      },
-      params: {
-        taiKhoan: userId,
-      },
-    });
+    return axiosClient.post("QuanLyNguoiDung/CapNhatThongTinNguoiDung", userId);
   },
-  findUser: (userId) => {
+  findUser: (e) => {
     return axiosClient.get("QuanLyNguoiDung/TimKiemNguoiDung", {
       params: {
         maNhom: "GP01",
-        taiKhoan: userId,
+        taiKhoan: e,
       },
     });
   },

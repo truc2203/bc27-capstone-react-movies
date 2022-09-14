@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
 import { Breadcrumb, Layout, Menu } from "antd";
 import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 import { useSelector } from "react-redux";
@@ -23,8 +24,16 @@ function getItem(label, key, icon, children) {
   };
 }
 const items = [
-  getItem("Người dùng", "sub1", <UserOutlined />, [getItem("Tom", "3")]),
-  getItem("Quản Lý Phim", "sub2", <VideoCameraOutlined />),
+  getItem(
+    <NavLink to="/admin/users">Quản Lý Người Dùng</NavLink>,
+    "sub1",
+    <UserOutlined />
+  ),
+  getItem(
+    <NavLink to="../">Quản Lý Phim</NavLink>,
+    "sub2",
+    <VideoCameraOutlined />
+  ),
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const EditUser = () => {
@@ -37,6 +46,7 @@ const EditUser = () => {
       soDt: userInfo.soDT,
       maLoaiNguoiDung: userInfo.maLoaiNguoiDung,
       hoTen: userInfo.hoTen,
+      maNhom: "GP01",
     },
     mode: "onTouched",
   });
@@ -58,6 +68,7 @@ const EditUser = () => {
       notification.success({
         message: "Cập nhật thành công",
       });
+      movePath("../users");
     } catch (error) {
       notification.warning({
         message: "Cập nhật thất bại",

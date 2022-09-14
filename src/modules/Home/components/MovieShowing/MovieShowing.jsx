@@ -42,7 +42,7 @@ const MovieShowing = () => {
           return (
             <div key={movie.maPhim}>
               <img
-                className="rounded-2 movieShow "
+                className="rounded-2 movieShow"
                 src={movie.hinhAnh}
                 alt=""
               />

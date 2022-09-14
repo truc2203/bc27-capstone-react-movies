@@ -44,6 +44,7 @@ const AddUser = () => {
       soDt: "",
       maLoaiNguoiDung: "",
       hoTen: "",
+      maNhom:'GP01'
     },
     mode: "onTouched",
   });
@@ -61,6 +62,7 @@ const AddUser = () => {
       notification.success({
         message: "Thêm user thành công",
       });
+      movePath('../users')
       // Thành công: gọi notification
       // Redirect về trang MovieList
       // navigate("/admin/users");
@@ -116,11 +118,12 @@ const AddUser = () => {
               minHeight: 360,
             }}
           >
-            <form onSubmit={(handleSubmit(onSubmit), onError)}>
+            <form onSubmit={handleSubmit(onSubmit)}>
               <div className="pb-5">
                 <input
                   className="form-control"
                   type="text"
+                  disabled
                   placeholder="Tài Khoản"
                   {...register("taiKhoan", {
                     required: {

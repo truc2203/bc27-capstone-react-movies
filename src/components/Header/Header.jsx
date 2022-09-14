@@ -32,10 +32,10 @@ const Header = () => {
           <button onClick={() => movePath('/')}  className="nav-link" >Ứng Dụng</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath('register')}  className="nav-link " ><FaUserCircle/>Đăng Ký</button>
+          <button onClick={() => movePath('register')}  className="nav-link " >Đăng Ký</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath('login')} className="nav-link " ><FaUserCircle/>Đăng Nhập</button>
+          <button onClick={() => movePath('login')} className="nav-link " >Đăng Nhập</button>
         </li>
       </ul>
     </div>

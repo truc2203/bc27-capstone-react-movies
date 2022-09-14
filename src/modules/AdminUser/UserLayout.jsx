@@ -34,6 +34,7 @@ const items = [
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const UserLayout = () => {
+  const [key,setKey] = useState()
   const {
     data: users,
     isLoading,
@@ -56,8 +57,10 @@ const UserLayout = () => {
     movePath(`edit/${userr.taiKhoan}`);
     dispatch({ type: "userInfo", userr });
   };
-  const handleFindUser = (userId) => {
-    userAPI.findUser(userId);
+  const handleFindUser = (e) => {
+    setKey(e)
+    // const data = userAPI.findUser(key);
+    // console.log(data);
   };
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -93,9 +96,10 @@ const UserLayout = () => {
                   placeholder="Nhập tài khoản"
                   style={{ display: "inline-block", width: "80%" }}
                   className="form-control"
+                  onChange={(e) => handleFindUser(e)}
                 />
                 <button
-                  onClick={(userId) => handleFindUser(userId.taiKhoan)}
+                 
                   type="submit"
                   className="btn-style"
                   style={{ padding: "7px 14px" }}
