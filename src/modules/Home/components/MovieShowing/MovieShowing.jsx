@@ -22,7 +22,7 @@ const MovieShowing = () => {
     infinite: true,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 4,
+    slidesToScroll: 3
   };
 
   return (

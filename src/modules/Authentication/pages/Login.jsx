@@ -23,30 +23,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const { user, isLoading } = useSelector((state) => state.auth);
 
-  // const { data: handleLogin, isLoading } = useRequest(
-  //   (values) => authAPI.login(values),
-  //   {
-  //     isManual: true,
-  //   }
-  // );
-  // const onSubmit = async (values) => {
-  //   try {
-  //     const data = await handleLogin(values);
-  //     // Thành công lưu thông tin đăng nhập vào localStorage
-  //     localStorage.setItem("user", JSON.stringify(data));
-  //     // Chuyển user về trang home
-  //     navigate("/");
-  //     notification.success({
-  //       message: "Đăng nhập thành công",
-  //     });
-  //   } catch (error) {
-  //     notification.error({
-  //       message: "Đăng nhập thất bại",
-  //       description: error,
-  //     });
-  //   }
-  // };
-
   const onSubmit = async (values) => {
     try {
       // chờ cho action login thành công
@@ -124,7 +100,7 @@ const Login = () => {
             disabled={isLoading}
             loading={isLoading}
           >
-            Đăng Nhập
+           Đăng nhập
           </Button>
         </Form.Item>
       </Form>
