@@ -30,10 +30,10 @@ const ChairList = ({ timeId }) => {
       // }
     }
   };
-  console.log(bookingList);
+  // console.log(bookingList);
   return (
     <>
-      <div className=" py-5 d-flex">
+      <div className=" py-5 d-flex theater">
         <div className="col-1">
           <div className="d-flex flex-column">
             <p className=" chair-col">A</p>
@@ -72,7 +72,7 @@ const ChairList = ({ timeId }) => {
           })}
         </div>
       </div>
-      <div className="d-flex flex-row">
+      <div className="d-flex flex-row pb-xl-0 pb-4">
         <div className="me-3">
           <div
             style={{

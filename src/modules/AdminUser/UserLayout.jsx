@@ -4,7 +4,7 @@ import userAPI from "apis/userAPI";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { VideoCameraOutlined, UserOutlined } from "@ant-design/icons";
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Breadcrumb, Layout, Menu,notification } from "antd";
 import {
   AiOutlineEdit,
   AiOutlineDelete,
@@ -50,8 +50,19 @@ const UserLayout = () => {
   if (!user || user.maLoaiNguoiDung !== "QuanTri") {
     return navigate("../../");
   }
-  const handleDeleteUser = (userId, auth) => {
-    userAPI.deleteUser(userId, auth);
+  const handleDeleteUser = async (userId, auth) => {
+    try {
+      await userAPI.deleteUser(userId, auth);
+      notification.success({
+        message: "Xóa user thành công",
+      });
+
+    } catch (error) {
+      notification.error({
+        message : 'Người dùng này đã đặt vé xem phim không thể xóa!'
+      });
+    }
+    ;
   };
   const handleEditUser = (userr) => {
     movePath(`edit/${userr.taiKhoan}`);

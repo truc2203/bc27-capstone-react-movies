@@ -24,8 +24,8 @@ const CinemaFromMovie = ({movieId}) => {
                   return (
                     <button
                       onClick={() => handleShowMovieList(cinemaName)}
-                      style={{ backgroundColor: "transparent", display: "block" }}
-                      className="mb-3 movie-title"
+                      style={{ backgroundColor: "transparent" }}
+                      className="mb-3 movie-title text-start d-sm-inline d-lg-block"
                       key={cinemaName.maCumRap}
                     >
                       <img

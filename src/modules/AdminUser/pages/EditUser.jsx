@@ -89,7 +89,7 @@ const EditUser = () => {
       </Sider>
       <Layout className="site-layout">
         <Header className="site-layout-background" style={{ padding: 0 }} />
-        <Content style={{ margin: "16px 0" }}>
+        <Content style={{ margin: "0 16px" }}>
           <Breadcrumb
             style={{
               margin: "16px 0",
@@ -113,10 +113,13 @@ const EditUser = () => {
             }}
           >
             <form onSubmit={handleSubmit(onSubmit)}>
-              <h1>Add User</h1>
-              <div className="pb-5">
+              <div className="d-flex">
+                <div className="col-6 m-2">
+                <div className="pb-5">
+                  <span>Tài Khoản :</span>
+                <fieldset disabled>
                 <input
-                  className="form-control"
+                  className="form-control w-75"
                   type="text"
                   placeholder="Tài Khoản"
                   {...register("taiKhoan", {
@@ -134,10 +137,13 @@ const EditUser = () => {
                     },
                   })}
                 />
+                </fieldset>
+                
               </div>
               <div className="pb-5">
+              <span>Mật Khẩu:</span>
                 <input
-                  className="form-control"
+                  className="form-control w-75"
                   type="text"
                   placeholder="Mật khẩu"
                   {...register("matKhau", {
@@ -149,8 +155,9 @@ const EditUser = () => {
                 />
               </div>
               <div className="pb-5">
+              <span>Email :</span>
                 <input
-                  className="form-control"
+                  className="form-control w-75"
                   type="text"
                   placeholder="email"
                   {...register("email", {
@@ -166,9 +173,12 @@ const EditUser = () => {
                   })}
                 />
               </div>
-              <div className="pb-5">
+                </div>
+                <div className="col-6 m-2">
+                <div className="pb-5">
+                <span>Số Điện Thoại :</span>
                 <input
-                  className="form-control"
+                  className="form-control w-75"
                   type="text"
                   placeholder="Số điện thoại"
                   {...register("soDt", {
@@ -180,16 +190,21 @@ const EditUser = () => {
                 />
               </div>
               <div className="pb-5">
-                <input
-                  className="form-control"
+              <span>Loại Người Dùng :</span>
+                <select  className="form-control w-75"
                   type="text"
                   placeholder="Loại người dùng"
-                  {...register("maLoaiNguoiDung")}
-                />
+                  {...register("maLoaiNguoiDung")}>
+                    <option value="QuanTri">Quản Trị</option>
+                    <option value="KhachHang">Khách Hàng</option>
+                </select>
+                 
+                
               </div>
               <div className="pb-5 ">
+                <span>Họ Tên</span>
                 <input
-                  className="form-control"
+                  className="form-control w-75"
                   type="text"
                   placeholder="Họ tên"
                   {...register("hoTen", {
@@ -200,6 +215,11 @@ const EditUser = () => {
                   })}
                 />
               </div>
+                </div>
+
+              </div>
+              
+              
               <button className="btn btn-success">Cập nhật</button>
             </form>
           </div>

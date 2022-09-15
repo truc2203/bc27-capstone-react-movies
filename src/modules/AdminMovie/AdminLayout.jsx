@@ -1,7 +1,7 @@
 import useRequest from "hooks/useRequest";
 import movieAPI from "apis/movieAPI";
 import { VideoCameraOutlined, UserOutlined } from "@ant-design/icons";
-import { Breadcrumb, Layout, Menu } from "antd";
+import { Breadcrumb, Layout, Menu,notification } from "antd";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -46,9 +46,19 @@ const AdminLayout = () => {
     movePath(`${path}/${movie.maPhim}`);
   };
 
-  const handleDeleteMovie = (movieId, auth) => {
-    movieAPI.deleteMovie(movieId, auth);
-    setIsDelete(!isDelete)
+  const handleDeleteMovie = async (movieId, auth) => {
+    try {
+      await movieAPI.deleteMovie(movieId, auth);
+      notification.success({
+        message: "Xóa phim thành công",
+      });
+      setIsDelete(!isDelete)
+    } catch (error) {
+      notification.warning({
+        message : setTimeout(error.message,3000)
+      });
+    }
+    
   };
 
 

@@ -34,8 +34,8 @@ h6 {
 
 /* Cinema */
 .movieShow {
-  width: 15vw;
-  height: 280px;
+  width: 220px;
+  height: 310px;
 }
 
 .cinema-logo {
@@ -64,7 +64,7 @@ h6 {
 }
 
 .cinema {
-  height: 400px;
+  height: 300px;
   overflow: auto;
 }
 
@@ -83,6 +83,11 @@ h6 {
   border-radius: 4px;
   text-decoration: none;
   background-color: rgba(246, 246, 246, 0.5);
+}
+
+.theater{
+  width: 50vw;
+  height: 30vw;
 }
 /* Custom Scrollbar */
 
@@ -123,9 +128,9 @@ h6 {
 
 /* MoviShowing */
 .movieShowingPic {
-  width: 100%;
+  width: 25vw;
   border-radius: 4px;
-  height: 400px;
+  height: 30vw;
 }
 
 /* Booking */
@@ -325,5 +330,51 @@ h6 {
   }
   .table {
     margin-right: 10px !important;
+  }
+}
+
+
+
+
+/* UI responsitive */
+@media screen and (max-width:1200px) {
+  .movieShow{
+    width: 18vw;
+    height: 24vw;
+  }
+
+}
+
+@media screen and (max-width:992px) {
+  .movieShow{
+    width: 22vw;
+    height: 30vw;
+  }
+  .movie-title{
+    width: 50%;
+  }
+}
+
+@media screen and (max-width:768px) {
+  .movieShow{
+    width: 28vw;
+    height: 36vw;
+  }
+  .movie-title{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:576px) {
+
+}
+
+@media screen and (max-width:480px) {
+  .movieShow{
+    width: 42vw;
+    height: 60vw;
+  }
+  .showtimes{
+    width: 75%;
   }
 }

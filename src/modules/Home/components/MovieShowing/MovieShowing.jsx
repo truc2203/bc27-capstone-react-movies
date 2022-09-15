@@ -17,12 +17,39 @@ const MovieShowing = () => {
     navigate(`/movie/${movieId}`);
   };
 
-  const settings = {
+  var settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 5,
-    slidesToScroll: 3
+    slidesToScroll: 3,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 4,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          initialSlide: 2
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2
+        }
+      }
+    ]
   };
 
   return (
@@ -36,7 +63,7 @@ const MovieShowing = () => {
     //     );
     //   })}
     // </ul>
-    <div className="m-container py-5">
+    <div className="m-container py-md-4 py-3">
       <Slider {...settings}>
         {movies?.map((movie) => {
           return (

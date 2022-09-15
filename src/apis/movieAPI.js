@@ -47,6 +47,10 @@ const movieAPI = {
       },
     });
   },
+  getBooking: (list) => {
+    return axiosClient.post('QuanLyDatVe/DatVe',list)
+  },
+
   addMovie: (movie) => {
     // Đối với dữ liệu có định dạng đặc biệt như File,...
     // Ta cần phải tạo ra FormData để lưu trữ

@@ -17,13 +17,13 @@ const Showtimes = ({ movieId }) => {
   } = useRequest(() => movieAPI.getCinema());
 
   return (
-    <div className="d-flex">
-      <div className="col-1 border-end">
+    <div className="d-flex flex-lg-row flex-column">
+      <div className="col-lg-1 border-end col-12 flex-row text-center">
         {cinema?.map((cinema) => {
           return (
             <button
               onClick={() => handleCinema(cinema)}
-              className="d-block cinema-logo mb-3"
+              className="d-sm-inline d-lg-block cinema-logo mb-3 me-4 pe-lg-0"
               key={cinema.maHeThongRap}
             >
               <img
@@ -35,11 +35,11 @@ const Showtimes = ({ movieId }) => {
           );
         })}
       </div>
-      <div className="col-11 d-flex">
-        <div className="col-6 cinema">
+      <div className="col-11 d-flex flex-lg-row flex-column">
+        <div className="col-lg-6 col-12 cinema my-3 my-lg-0">
         <CinemaFromMovie movieId={movieId}/>
         </div>
-        <div className="col-6 cinema">
+        <div className="col-lg-6 col-12 cinema">
         <TimeFromMovie  movieId={movieId}/>
         </div>
       </div>

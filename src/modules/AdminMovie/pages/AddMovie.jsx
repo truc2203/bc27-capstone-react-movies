@@ -70,7 +70,7 @@ const AddMovie = () => {
     } catch (error) {
       // Thất bại: gọi notification hiển thị error
       notification.warning({
-        message: "Thêm phim thất bại",
+        message: 'Thêm phim thất bại'
       });
     }
   };

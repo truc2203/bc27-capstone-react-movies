@@ -1,7 +1,9 @@
 import React from "react";
 import useRequest from "hooks/useRequest";
+import { message, notification } from "antd";
 import movieAPI from "apis/movieAPI";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 const BookingInfo = ({ timeId }) => {
   const {
     data: chairs,
@@ -12,6 +14,34 @@ const BookingInfo = ({ timeId }) => {
   const {bookingList} = useSelector((state) => state.movie)
 
   const totalPay = bookingList.reduce((total,value) => total += value.giaVe,0)
+
+  const [booked,setBooked] = useState({})
+
+  const defaultValue = 
+    {
+      maLichChieu:timeId,
+      danhSachVe:[
+        {
+          maGhe:'25',
+          giaVe:'95000'
+        }
+      ]
+    }
+  
+
+  const handleBooking = async (defaultValue) => {
+      try {
+        await movieAPI.getBooking(defaultValue)
+        notification.success({
+          message:'Đặt vé thành công'
+        })
+        
+      } catch (error) {
+        notification.warning({
+          message: 'Đặt vé thất bại'
+        })
+      }
+  }
 
   return (
     <div className="border border-dark border-2 rounded-2 p-3">
@@ -44,7 +74,7 @@ const BookingInfo = ({ timeId }) => {
       <div className="d-flex justify-content-between py-3 fw-semibold border-1 border-bottom border-dark">
         <span>Tổng Tiền :</span> <span>{totalPay}</span>
       </div>
-      <button className="my-3  btn-style w-100 fs-5">ĐẶT VÉ</button>
+      <button onClick={() => handleBooking(defaultValue)} className="my-3  btn-style w-100 fs-5">ĐẶT VÉ</button>
     </div>
   );
 };
