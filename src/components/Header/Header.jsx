@@ -2,6 +2,7 @@ import React from "react";
 import {FcPhotoReel} from 'react-icons/fc'
 import {FaUserCircle} from 'react-icons/fa'
 import { useNavigate } from "react-router-dom";
+import LogOut from "./Component/LogOut";
 const Header = () => {
   const navigate = useNavigate()
   const movePath = (path) => {
@@ -35,7 +36,7 @@ const Header = () => {
           <button onClick={() => movePath('register')}  className="nav-link " >Đăng Ký</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath(userData?.taiKhoan ? 'logout' : 'login')} className="nav-link " >{userData?.taiKhoan ? `${userData.hoTen}!` :'Đăng nhập'}</button>
+          <button onClick={() => movePath(userData?.taiKhoan ? '' : 'login')} className="nav-link " >{userData?.taiKhoan ? <LogOut id={userData.taiKhoan}/> :'Đăng nhập'}</button>
         </li>
       </ul>
     </div>

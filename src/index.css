@@ -86,8 +86,8 @@ h6 {
 }
 
 .theater{
-  width: 50vw;
-  height: 30vw;
+  /* width: 50vw;
+  height: 30vw; */
 }
 /* Custom Scrollbar */
 
@@ -216,6 +216,11 @@ h6 {
 .form-login {
   background-color: white;
   padding: 10px 15px;
+}
+
+.logOut:hover{
+  color: #d10b0b;
+  transition: all 0.5;
 }
 
 /* Admin add movie */

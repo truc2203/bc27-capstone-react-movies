@@ -7,25 +7,18 @@ import { useState } from "react";
 const BookingInfo = ({ timeId }) => {
   const {
     data: chairs,
-    isLoading,
-    error,
+
   } = useRequest(() => movieAPI.getChairList(timeId));
 
   const {bookingList} = useSelector((state) => state.movie)
 
   const totalPay = bookingList.reduce((total,value) => total += value.giaVe,0)
 
-  const [booked,setBooked] = useState({})
 
   const defaultValue = 
     {
       maLichChieu:timeId,
-      danhSachVe:[
-        {
-          maGhe:'25',
-          giaVe:'95000'
-        }
-      ]
+      danhSachVe:bookingList
     }
   
 
@@ -35,7 +28,6 @@ const BookingInfo = ({ timeId }) => {
         notification.success({
           message:'Đặt vé thành công'
         })
-        
       } catch (error) {
         notification.warning({
           message: 'Đặt vé thất bại'
@@ -69,7 +61,7 @@ const BookingInfo = ({ timeId }) => {
         })}</span>
       </div>
       <div className="d-flex justify-content-between py-3 fw-semibold border-1 border-bottom border-dark">
-        <span>Ưu đãi : </span>
+        <span>Ưu đãi : </span> 
       </div>
       <div className="d-flex justify-content-between py-3 fw-semibold border-1 border-bottom border-dark">
         <span>Tổng Tiền :</span> <span>{totalPay}</span>
