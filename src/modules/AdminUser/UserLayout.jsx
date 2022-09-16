@@ -54,12 +54,13 @@ const UserLayout = () => {
     try {
       await userAPI.deleteUser(userId, auth);
       notification.success({
-        message: "Xóa user thành công",
+        message: "Xóa User thành công",
       });
 
     } catch (error) {
       notification.error({
-        message : 'Người dùng này đã đặt vé xem phim không thể xóa!'
+        message : 'Xóa User thất bại',
+        description : error
       });
     }
     ;

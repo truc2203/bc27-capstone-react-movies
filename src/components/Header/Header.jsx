@@ -12,7 +12,7 @@ const Header = () => {
   return (
    <nav className="m-container navbar navbar-expand-lg h-100">
   <div className="container-fluid">
-    <button className="navbar-brand" >
+    <button onClick={() => movePath('/')} className="navbar-brand" >
       <FcPhotoReel/>
     </button>
     <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

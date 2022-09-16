@@ -55,7 +55,8 @@ const AdminLayout = () => {
       setIsDelete(!isDelete)
     } catch (error) {
       notification.warning({
-        message : setTimeout(error.message,3000)
+        message : 'Xóa phim thất bại',
+        description : error
       });
     }
     
@@ -64,7 +65,10 @@ const AdminLayout = () => {
 
   const [collapsed, setCollapsed] = useState(false);
   if (!user || user.maLoaiNguoiDung !== "QuanTri") {
-    return navigate("../../");
+    navigate('../../')
+    notification.warning({
+      message : 'Tài khoản của bạn không có quyền Quản trị để truy cập trang này !'
+    })
   }
   return (
     <Layout

@@ -86,13 +86,15 @@ h6 {
 }
 
 .theater{
-  /* width: 50vw;
-  height: 30vw; */
+  width: 800px;
+  height: 556px;
+  margin: auto;
 }
 /* Custom Scrollbar */
 
 ::-webkit-scrollbar {
-  width: 4px;
+  width: 6px;
+  height: 6px;
 }
 
 /* Track */
@@ -116,7 +118,7 @@ h6 {
   padding: 12px 24px;
   border: none;
   background: none;
-  box-shadow: 0 0 0 48px #ffffff inset;
+  box-shadow: 0 0 0 48px #1d2529 inset;
   border-radius: 8px;
   transition: all 0.5s;
 }

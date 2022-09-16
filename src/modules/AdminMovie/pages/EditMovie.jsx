@@ -77,6 +77,7 @@ const EditMovie = () => {
     } catch (error) {
       notification.warning({
         message: "Cập nhật thất bại",
+        description : error
       });
       // Thất bại: gọi notification hiển thị error
     }

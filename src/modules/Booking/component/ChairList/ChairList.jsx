@@ -33,7 +33,8 @@ const ChairList = ({ timeId }) => {
   // console.log(bookingList);
   return (
     <>
-      <div className=" py-5 d-flex theater">
+    <div className="overflow-auto">
+      <div className=" pt-5 d-flex theater">
         <div className="col-1">
           <div className="d-flex flex-column">
             <p className=" chair-col">A</p>
@@ -72,57 +73,60 @@ const ChairList = ({ timeId }) => {
           })}
         </div>
       </div>
-      <div className="d-flex flex-row pb-xl-0 pb-4">
-        <div className="me-3">
-          <div
-            style={{
-              display: "inline-block",
-              width: "24px",
-              height: "24px",
-              backgroundColor: "#514e4e",
-            }}
-            className="rounded-1"
-          ></div>{" "}
-          Ghế thường
-        </div>
-        <div className="me-3">
-          <div
-            style={{
-              display: "inline-block",
-              width: "24px",
-              height: "24px",
-              backgroundColor: "#2deb0c",
-            }}
-            className="rounded-1"
-          ></div>{" "}
-          Ghế VIP
-        </div>
-        <div className="me-3">
-          <div
-            style={{
-              display: "inline-block",
-              width: "24px",
-              height: "24px",
-              backgroundColor: "#e6b908",
-            }}
-            className="rounded-1"
-          ></div>{" "}
-          Ghế đã đặt
-        </div>
-        <div className="me-3">
-          <div
-            style={{
-              display: "inline-block",
-              width: "24px",
-              height: "24px",
-              backgroundColor: "#d10b0b",
-            }}
-            className="rounded-1"
-          ></div>{" "}
-          Ghế đang chọn
-        </div>
-      </div>
+      
+    </div>
+    <div className="d-flex flex-row pb-xl-0 py-4">
+    <div className="me-3">
+      <div
+        style={{
+          display: "inline-block",
+          width: "24px",
+          height: "24px",
+          backgroundColor: "#514e4e",
+        }}
+        className="rounded-1"
+      ></div>{" "}
+      Ghế thường
+    </div>
+    <div className="me-3">
+      <div
+        style={{
+          display: "inline-block",
+          width: "24px",
+          height: "24px",
+          backgroundColor: "#2deb0c",
+        }}
+        className="rounded-1"
+      ></div>{" "}
+      Ghế VIP
+    </div>
+    <div className="me-3">
+      <div
+        style={{
+          display: "inline-block",
+          width: "24px",
+          height: "24px",
+          backgroundColor: "#e6b908",
+        }}
+        className="rounded-1"
+      ></div>{" "}
+      Ghế đã đặt
+    </div>
+    <div className="me-3">
+      <div
+        style={{
+          display: "inline-block",
+          width: "24px",
+          height: "24px",
+          backgroundColor: "#d10b0b",
+        }}
+        className="rounded-1"
+      ></div>{" "}
+      Ghế đang chọn
+    </div>
+  </div>
     </>
+    
   );
 };
 

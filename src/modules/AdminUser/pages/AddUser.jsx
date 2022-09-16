@@ -66,7 +66,8 @@ const AddUser = () => {
 
     } catch (error) {
       notification.error({
-        message: 'Thêm user thất bại'
+        message: 'Thêm user thất bại',
+        description : error
       });
     }
     // Thất bại: gọi notification hiển thị error

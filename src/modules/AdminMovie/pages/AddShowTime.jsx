@@ -78,6 +78,7 @@ const AddShowTime = () => {
       // Thất bại: gọi notification hiển thị error
       notification.warning({
         message: "Tạo lịch chiếu thất bại",
+        description : error
       });
     }
   };

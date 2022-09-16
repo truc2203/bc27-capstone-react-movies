@@ -30,7 +30,8 @@ const BookingInfo = ({ timeId }) => {
         })
       } catch (error) {
         notification.warning({
-          message: 'Đặt vé thất bại'
+          message: 'Đặt vé thất bại',
+          description : error
         })
       }
   }
