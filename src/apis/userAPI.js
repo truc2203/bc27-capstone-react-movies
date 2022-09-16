@@ -22,6 +22,14 @@ const userAPI = {
       },
     });
   },
+  searchUser: (string) => {
+    return axiosClient.get("QuanLyNguoiDung/TimKiemNguoiDung", {
+      params: {
+        maNhom: "GP01",
+        tuKhoa : string
+      },
+    });
+  },
   updateUser: (userId, auth) => {
     return axiosClient.post("QuanLyNguoiDung/CapNhatThongTinNguoiDung", userId);
   },

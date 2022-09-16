@@ -46,9 +46,8 @@ const Login = () => {
   // }
 
   return (
-    <div className="login">
-      <h1>Login</h1>
-      <Form className="form-login"
+    <div className="log">
+      <Form className="form-log rounded-2"
         onFinish={handleSubmit(onSubmit)}
         labelCol={{ span: 3 }}
         wrapperCol={{ span: 8 }}

@@ -1,10 +1,11 @@
 import axiosClient from "./axiosClient";
 
 const movieAPI = {
-  getMovies: () => {
+  getMovies: (value) => {
     return axiosClient.get("QuanLyPhim/LayDanhSachPhim", {
       params: {
         maNhom: "GP01",
+        tenPhim : value
       },
     });
   },

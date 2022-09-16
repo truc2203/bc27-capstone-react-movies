@@ -34,6 +34,10 @@ const Register = () => {
       await handleRegister(values);
       // Sau khi đăng ký thành công, ta cần chuyển user về trang login
       navigate("/login");
+      notification.error({
+        message: "Đăng ký thành công",
+   
+      });
     } catch (error) {
       // Đăng ký thất bại show error ra cho user thấy
       notification.error({
@@ -48,10 +52,9 @@ const Register = () => {
   };
 
   return (
-    <div className="logo-register">
-      <h1>Register</h1>
+    <div className="log">
       <form
-        className="form-register"
+        className="form-log rounded-2"
         onSubmit={handleSubmit(onSubmit, onError)}
       >
         <div>
@@ -139,8 +142,10 @@ const Register = () => {
           {errors.soDt && <p>{errors.soDt.message}</p>}
         </div>
         <br />
-        <button className="btn btn-success">Đăng Ký</button>
+        
+        <button className="btn btn-info">Đăng Ký</button>
       </form>
+      
     </div>
   );
 };

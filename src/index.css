@@ -173,15 +173,7 @@ h6 {
 }
 
 /* Register */
-.logo-register {
-  background-image: url("./img/backapp.b46ef3a1.jpg");
-  height: 900px;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  width: 100%;
-  padding: 100px 600px;
-}
+
 .ant-row {
   display: block;
 }
@@ -190,10 +182,6 @@ h6 {
 }
 .ant-col-14 {
   display: none;
-}
-.form-register {
-  background-color: white;
-  padding: 20px 40px;
 }
 
 #components-layout-demo-side .logo {
@@ -206,18 +194,22 @@ h6 {
   background: #fff;
 }
 /* Login */
-.login {
+.log {
   background-image: url("./img/backapp.b46ef3a1.jpg");
   height: 900px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  padding: 100px 500px;
 }
-.form-login {
+.form-log {
   background-color: white;
-  padding: 10px 15px;
+  padding: 16px;
+  width: 40vw;
+  margin: auto;
+  position: absolute;
+  top: 30%;
+  left: 30%;
 }
 
 .logOut:hover{

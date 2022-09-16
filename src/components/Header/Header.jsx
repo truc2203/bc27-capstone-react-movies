@@ -2,13 +2,21 @@ import React from "react";
 import {FcPhotoReel} from 'react-icons/fc'
 import {FaUserCircle} from 'react-icons/fa'
 import { useNavigate } from "react-router-dom";
-import LogOut from "./Component/LogOut";
+import { notification } from "antd";
 const Header = () => {
   const navigate = useNavigate()
   const movePath = (path) => {
     navigate(`${path}`)
   }
   const userData = JSON.parse(localStorage.getItem("user"));  
+
+  const hanldeLogout = () => {
+    localStorage.removeItem('user')
+    movePath('/')
+    notification.success({
+      message:'Đăng xuất thành công !'
+    })
+  }
   return (
    <nav className="m-container navbar navbar-expand-lg h-100">
   <div className="container-fluid">
@@ -36,7 +44,9 @@ const Header = () => {
           <button onClick={() => movePath('register')}  className="nav-link " >Đăng Ký</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath(userData?.taiKhoan ? '' : 'login')} className="nav-link " >{userData?.taiKhoan ? <LogOut id={userData.taiKhoan}/> :'Đăng nhập'}</button>
+          <button onClick={() => movePath(userData?.taiKhoan ? '' : 'login')} className="nav-link d-inline" >{userData?.taiKhoan ? `${userData.taiKhoan}` :'Đăng nhập'}</button>
+          <button onClick={() => hanldeLogout()} className="nav-link d-inline " >{userData?.taiKhoan ? '| Đăng Xuất' :''}</button>
+          
         </li>
       </ul>
     </div>

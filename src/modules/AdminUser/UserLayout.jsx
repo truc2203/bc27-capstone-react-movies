@@ -4,7 +4,7 @@ import userAPI from "apis/userAPI";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { VideoCameraOutlined, UserOutlined } from "@ant-design/icons";
-import { Breadcrumb, Layout, Menu,notification } from "antd";
+import { Breadcrumb, Layout, Menu, notification } from "antd";
 import {
   AiOutlineEdit,
   AiOutlineDelete,
@@ -34,12 +34,13 @@ const items = [
   // getItem("Lịch Chiếu", "9", <FileOutlined />),
 ];
 const UserLayout = () => {
-  const [key,setKey] = useState()
+  const [value, setValue] = useState(null);
+  // console.log(value);
   const {
     data: users,
     isLoading,
     error,
-  } = useRequest(() => userAPI.getUsers());
+  } = useRequest(() => userAPI.searchUser(value ? value : null),{deps:[value]});
   const navigate = useNavigate();
   const movePath = (path) => {
     navigate(path);
@@ -54,25 +55,18 @@ const UserLayout = () => {
     try {
       await userAPI.deleteUser(userId, auth);
       notification.success({
-        message: "Xóa User thành công",
+        message: "Xóa User thành công, F5 lại hộ cái",
       });
-
     } catch (error) {
       notification.error({
-        message : 'Xóa User thất bại',
-        description : error
+        message: "Xóa User thất bại",
+        description: error,
       });
     }
-    ;
   };
   const handleEditUser = (userr) => {
     movePath(`edit/${userr.taiKhoan}`);
     dispatch({ type: "userInfo", userr });
-  };
-  const handleFindUser = (e) => {
-    setKey(e)
-    // const data = userAPI.findUser(key);
-    // console.log(data);
   };
   return (
     <Layout style={{ minHeight: "100vh" }}>
@@ -108,16 +102,9 @@ const UserLayout = () => {
                   placeholder="Nhập tài khoản"
                   style={{ display: "inline-block", width: "80%" }}
                   className="form-control"
-                  onChange={(e) => handleFindUser(e)}
+                  onChange={(e) => setValue(e.target.value)}
                 />
-                <button
-                 
-                  type="submit"
-                  className="btn-style"
-                  style={{ padding: "7px 14px" }}
-                >
-                  Tìm kiếm
-                </button>
+                
               </div>
             </form>
           </Breadcrumb>

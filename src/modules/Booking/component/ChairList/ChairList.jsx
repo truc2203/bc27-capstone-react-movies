@@ -49,7 +49,7 @@ const ChairList = ({ timeId }) => {
             <p className=" chair-col">J</p>
           </div>
         </div>
-        <div className="col-11 d-flex flex-wrap">
+        <div className="col-11 d-flex flex-wrap mb-5">
           {chairs?.danhSachGhe?.map((chair) => {
             return (
               <button
