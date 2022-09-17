@@ -90,6 +90,13 @@ h6 {
   height: 556px;
   margin: auto;
 }
+
+.showNav{
+  background: aliceblue;
+    position: absolute;
+    top: 64px;
+    right: -50px;
+}
 /* Custom Scrollbar */
 
 ::-webkit-scrollbar {
