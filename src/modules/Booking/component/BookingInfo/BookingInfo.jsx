@@ -26,7 +26,7 @@ const BookingInfo = ({ timeId }) => {
       try {
         await movieAPI.getBooking(defaultValue)
         notification.success({
-          message:'Đặt vé thành công, F5 lại hộ cái'
+          message:'Đặt vé thành công, Vui lòng F5 lại để cập nhật'
         })
       } catch (error) {
         notification.warning({

@@ -145,7 +145,7 @@ const Register = () => {
         
         <button className="btn btn-info">Đăng Ký</button>
       </form>
-      
+     
     </div>
   );
 };

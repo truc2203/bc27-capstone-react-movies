@@ -92,10 +92,13 @@ h6 {
 }
 
 .showNav{
-  background: aliceblue;
+  width: 200px;
+  border: 1px solid #1d2529;
+  background: #ffffff;
+  border-radius: 4px;
     position: absolute;
     top: 64px;
-    right: -50px;
+    right: -60px;
 }
 /* Custom Scrollbar */
 
@@ -129,6 +132,7 @@ h6 {
   border-radius: 8px;
   transition: all 0.5s;
 }
+
 
 .btn-style:hover {
   color: #ee8b09;
@@ -212,11 +216,11 @@ h6 {
 .form-log {
   background-color: white;
   padding: 16px;
-  width: 40vw;
+  width: 80vw;
   margin: auto;
   position: absolute;
   top: 30%;
-  left: 30%;
+  left: 10%;
 }
 
 .logOut:hover{

@@ -55,7 +55,7 @@ const UserLayout = () => {
     try {
       await userAPI.deleteUser(userId, auth);
       notification.success({
-        message: "Xóa User thành công, F5 lại hộ cái",
+        message: "Xóa User thành công, Vui lòng F5 lại để cập nhật",
       });
     } catch (error) {
       notification.error({

@@ -59,7 +59,7 @@ const AdminLayout = () => {
     try {
       await movieAPI.deleteMovie(movieId, auth);
       notification.success({
-        message: "Xóa phim thành công, F5 lại hộ cái",
+        message: "Xóa phim thành công,  Vui lòng F5 lại để cập nhật",
       });
     } catch (error) {
       notification.warning({

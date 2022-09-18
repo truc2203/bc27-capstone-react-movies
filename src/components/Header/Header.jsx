@@ -31,19 +31,19 @@ const Header = () => {
       <span className="navbar-toggler-icon" />
       <ul style={{display : open ? 'block' : 'none'}} className="navbar-nav showNav">
         <li className="nav-item px-3">
-          <button onClick={() => movePath('/')} className="nav-link" aria-current="page" >Lịch Chiếu</button>
+          <button onClick={() => movePath('/')} className="nav-link d-inline" aria-current="page" >Lịch Chiếu</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath('/')} className="nav-link" >Cụm rạp</button>
+          <button onClick={() => movePath('/')} className="nav-link d-inline" >Cụm rạp</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath('/')} className="nav-link" >Tin Tức</button>
+          <button onClick={() => movePath('/')} className="nav-link d-inline" >Tin Tức</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath('/')}  className="nav-link" >Ứng Dụng</button>
+          <button onClick={() => movePath('/')}  className="nav-link d-inline" >Ứng Dụng</button>
         </li>
         <li className="nav-item px-3">
-          <button onClick={() => movePath('register')}  className="nav-link " >Đăng Ký</button>
+          <button onClick={() => movePath('register')}  className="nav-link d-inline " >Đăng Ký</button>
         </li>
         <li className="nav-item px-3">
           <button onClick={() => movePath(userData?.taiKhoan ? '' : 'login')} className="nav-link d-inline" >{userData?.taiKhoan ? `${userData.taiKhoan}` :'Đăng nhập'}</button>
