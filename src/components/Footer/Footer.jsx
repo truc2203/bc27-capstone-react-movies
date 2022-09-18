@@ -27,7 +27,7 @@ const Footer = () => {
             </div>
         </div>
     </div>
-    <h6 className='m-container'>Trần Thanh Trúc</h6>
+    <h6 className='m-container'>Trần Thanh Trúc - Nguyễn Ngọc Tuân</h6>
 </>
   )
 }
