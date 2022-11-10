@@ -34,7 +34,7 @@ const Register = () => {
       await handleRegister(values);
       // Sau khi đăng ký thành công, ta cần chuyển user về trang login
       navigate("/login");
-      notification.error({
+      notification.success({
         message: "Đăng ký thành công",
    
       });
@@ -83,7 +83,7 @@ const Register = () => {
         <div>
           <input
             className="form-control mb-3"
-            type="text"
+            type="password"
             placeholder="Mật Khẩu"
             {...register("matKhau", {
               required: {
@@ -98,7 +98,7 @@ const Register = () => {
         <div>
           <input
             className="form-control mb-3"
-            type="text"
+            type="email"
             placeholder="Email"
             {...register("email", {
               required: { value: true, message: "Email không được để trống" },

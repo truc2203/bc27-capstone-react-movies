@@ -4,13 +4,14 @@ import movieAPI from "apis/movieAPI";
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 const ChairList = ({ timeId }) => {
+  const { isBooking } = useSelector((state) => state.movie);
+
   const {
     data: chairs,
     isLoading,
     error,
-  } = useRequest(() => movieAPI.getChairList(timeId));
+  } = useRequest(() => movieAPI.getChairList(timeId),{deps:[isBooking]});
   const dispatch = useDispatch();
-  const { bookingList } = useSelector((state) => state.movie);
 
   const [select, setSelect] = useState(false);
 

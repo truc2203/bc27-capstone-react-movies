@@ -5,6 +5,7 @@ const initialState = {
   movieId: null,
   movieInfo: null,
   theaterList: [],
+  isBooking:true
 };
 
 const movieReducer = (state = initialState, action) => {
@@ -33,6 +34,8 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, movieInfo: action.movie };
     case "theaterList":
       return { ...state, theaterList: action.theater };
+    case 'bookingSuccess' : 
+        return {...state,isBooking:action.isBookingDone}
     default:
       return state;
   }

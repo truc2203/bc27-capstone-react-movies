@@ -2,13 +2,16 @@ import React from "react";
 import useRequest from "hooks/useRequest";
 import { message, notification } from "antd";
 import movieAPI from "apis/movieAPI";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
 import { useState } from "react";
 const BookingInfo = ({ timeId }) => {
+  const dispatch = useDispatch()
+  const [isBookingDone,setIsBookingDone] = useState(false)
+
   const {
     data: chairs,
 
-  } = useRequest(() => movieAPI.getChairList(timeId));
+  } = useRequest(() => movieAPI.getChairList(timeId),{deps:[isBookingDone]});
 
   const {bookingList} = useSelector((state) => state.movie)
 
@@ -26,8 +29,10 @@ const BookingInfo = ({ timeId }) => {
       try {
         await movieAPI.getBooking(defaultValue)
         notification.success({
-          message:'Đặt vé thành công, Vui lòng F5 lại để cập nhật'
+          message:'Đặt vé thành công'
         })
+        setIsBookingDone(!isBookingDone)
+        dispatch({type:'bookingSuccess',isBookingDone})
       } catch (error) {
         notification.warning({
           message: 'Bạn phải đăng nhập để đặt vé !',
